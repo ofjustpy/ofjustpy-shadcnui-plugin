@@ -50,4 +50,3 @@ wp_endpoint = oj.create_endpoint(key="Avatar",
 oj.add_jproute("/", wp_endpoint)                    
                     
                     
-                    

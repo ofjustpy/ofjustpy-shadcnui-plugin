@@ -1,29 +1,41 @@
 import ofjustpy as oj
-from shadcnui_components.components import Select
-from py_tailwind_utils import *
+import shadcnui_components as SCUI
+from shadcnui_components.dsl import macros, writer_ctx
 from ofjustpy.icons import FontAwesomeIcon
 from py_tailwind_utils import *
 
+oj.set_style("un")
 
-select = Select(key="select")
+with writer_ctx:
+    with SCUI.Select() as select_box:
+        with SCUI.Select.Trigger(classes="w-[180px]"):
+            
+            with SCUI.Select.Value(placeholder="Theme"):
+                pass
+        
+        with SCUI.Select.Content():
+            
+            with SCUI.Select.Item(value="light"):
+                with oj.PD.Prose(text="Light"):
+                    pass
+            
+            with SCUI.Select.Item(value="dark"):
+                with oj.PD.Prose(text="Dark"):
+                    pass
+            
+            with SCUI.Select.Item(value="system"):
+                with oj.PD.Prose(text="System"):
+                    pass
+                
+
 
              
-item1 = select.Item(value="light", text="Light")
-item2 = select.Item(value="dark", text="Dark")
-group = select.Group(childs=[item1, item2
 
-    ]
-             )
-             
-select.set_slot_content(group, classes="bg-pink-400")
-print(select.domDict)
-
-print(select.attrs)
 app = oj.load_app()
 
 wp_endpoint = oj.create_endpoint(key="select",
                                  childs = [
-                                     select
+                                     select_box
                                            ],
                                  
                                  title="Select"

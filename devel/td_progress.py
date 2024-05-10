@@ -1,25 +1,25 @@
 import ofjustpy as oj
-from shadcnui_components.dsl  import macros, writer_ctx
+from shadcnui_components.dsl import macros, writer_ctx
 import shadcnui_components as SCUI
 from py_tailwind_utils import *
-from ofjustpy import icons as Icons
-
 oj.set_style("un")
 
 with writer_ctx:
-    with SCUI.Avatar() as avatar_box:
-        with SCUI.Avatar.Image(src="https://avatars.githubusercontent.com/u/124599?v=4", alt="@shadcn"):
-            pass
-        with SCUI.Avatar.Fallback(text="CN"):
-            pass
+    with SCUI.Progress(value=33, max_=100, classes="w-[60%]") as progress_box:
         
+        pass
+
+
+
+                    
 app = oj.load_app()
 
 wp_endpoint = oj.create_endpoint(key="Avatar",
                                  childs = [
-                                     avatar_box
+                                     progress_box
                                            ],
                                  
                                  title="Avatar"
                                  )
 oj.add_jproute("/", wp_endpoint)                    
+                    

@@ -3,10 +3,20 @@ from shadcnui_components.components import Checkbox, Label
 from py_tailwind_utils import *
 from ofjustpy.icons import FontAwesomeIcon
 from py_tailwind_utils import *
+import shadcnui_components as SCUI
+
+# checkbox = Checkbox(key="terms")
+# label = Label(for_="/terms", text="Accept terms and conditions",
+#               classes="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70")
 
 
-checkbox = Checkbox(key="terms")
-label = Label(for_="/terms", text="Accept terms and conditions",
+# label_box = oj.PD.Div(classes="flex items-center space-x-2",
+#           childs = [checkbox, label
+
+#               ]
+#           )
+checkbox = SCUI.Checkbox(key="terms")
+label = SCUI.Label(for_="/terms", text="Accept terms and conditions",
               classes="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70")
 
 
@@ -15,7 +25,12 @@ label_box = oj.PD.Div(classes="flex items-center space-x-2",
 
               ]
           )
-          
+
+checkbox_box = oj.HCCStatic.Div(key="Checkbox",
+                                childs = [label_box],
+                                )
+
+
 app = oj.load_app()
 
 wp_endpoint = oj.create_endpoint(key="alert",

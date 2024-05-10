@@ -5,13 +5,17 @@ from ofjustpy_engine import HC_Div_type_mixins as TR
 from addict_tracking_changes import Dict
 from ofjustpy.htmlcomponents_impl import assign_id
 
-def gen_Div_type_by_tag(tag, prefix="", addon_mixins=[], html_tag=None):
+def gen_Div_type_by_tag(tag, prefix="", addon_mixins=[], html_tag=None, attrs=None):
 
     class Mixin:
-        def __init__(self, **kwargs):
+        def __init__(self, attrs=attrs, **kwargs):
             self.domDict.vue_type = "shadcnui_component"
             self.domDict.html_tag = f"{prefix}{tag}".lower()
-
+            if attrs:
+                for attr in attrs:
+                    if attr in kwargs:
+                        self.attrs[attr] = kwargs.get(attr)
+                        
     class_def = gen_Div_type(HCType.passive,
                                  f"{prefix}{tag}",
                                  Mixin,
@@ -23,6 +27,26 @@ def gen_Div_type_by_tag(tag, prefix="", addon_mixins=[], html_tag=None):
     
     return class_def
 
+# ============================= accordion ============================
+
+class AccordionMixin:
+    def __init__(self, **kwargs):
+        self.domDict.vue_type= "shadcnui_component"
+        self.domDict.html_tag = "accordion"
+        for key in ['multiple', 'disabled', 'value', 'onValueChange', 'asChild', 'el']:
+            if key in kwargs:
+                self.attrs[key] = kwargs[key]
+
+    Item = gen_Div_type_by_tag("Item", prefix="Accordion_", attrs=['value', 'disabled', 'asChild', 'el'])
+    Trigger = gen_Div_type_by_tag("Trigger", prefix="Accordion_")
+    Content = gen_Div_type_by_tag("Content", prefix="Accordion_")
+    
+Accordion = gen_Div_type(
+    HCType.passive,
+    "Accordion",
+    AccordionMixin,
+    stytags_getter_func=lambda m=ui_styles: m.sty.shadcnui_accordion,
+)
 
 class AlertMixin:
     def __init__(self, **kwargs):
@@ -119,6 +143,9 @@ class ButtonMixin:
 
         if "type_" in kwargs:
             self.attrs["type"] = kwargs.get("type_")
+
+        if "variant" in kwargs:
+            self.attrs["variant"] = kwargs.get('variant')
             
 Button = gen_Div_type(
         HCType.active,
@@ -173,6 +200,7 @@ class CarouselMixin:
     Next = gen_Div_type_by_tag("Next", prefix="Carousel_")
 
 Carousel = gen_Div_type(
+    HCType.passive,
     "Carousel",
     CarouselMixin,
     stytags_getter_func=lambda m=ui_styles: m.sty.shadcnui_carousel,
@@ -194,6 +222,7 @@ Checkbox = gen_Div_type(
         stytags_getter_func=lambda m=ui_styles: m.sty.shadcnui_checkbox,
     
         )
+Checkbox = assign_id(Checkbox)
 
 class CollapsibleMixin:
     def __init__(self, **kwargs):
@@ -326,6 +355,8 @@ Input = gen_Div_type(
     static_addon_mixins = [TR.HCTextMixin]  
         )
 
+Input = assign_id(Input)
+
 class LabelMixin:
     def __init__(self, **kwargs):
         self.domDict.vue_type= "shadcnui_component"
@@ -359,3 +390,293 @@ Menubar = gen_Div_type(
     MenubarMixin,
     stytags_getter_func=lambda m=ui_styles: m.sty.shadcnui_menubar,
 )
+
+# ============================ pagination ============================
+
+class PaginationMixin:
+    def __init__(self, **kwargs):
+        self.domDict["vue_type"] = "shadcnui_component"
+        self.domDict["html_tag"] = "pagination"
+        self.attrs["count"] = 100
+    Content = gen_Div_type_by_tag("Content", prefix="Pagination_")
+    Item = gen_Div_type_by_tag("Item", prefix="Pagination_")
+    PrevButton = gen_Div_type_by_tag("PrevButton", prefix="Pagination_")
+    Ellipsis = gen_Div_type_by_tag("Ellipsis", prefix="Pagination_")
+    Link = gen_Div_type_by_tag("Link", prefix="Pagination_")
+    NextButton = gen_Div_type_by_tag("NextButton", prefix="Pagination_")
+
+Pagination = gen_Div_type(
+    HCType.passive,
+    "Pagination",
+    PaginationMixin,
+    stytags_getter_func=lambda m=ui_styles: m.sty.shadcnui_pagination,
+)
+
+
+# ============================= Progress =============================
+class ProgressMixin:
+    def __init__(self, **kwargs):
+        self.domDict["vue_type"] = "shadcnui_component"
+        self.domDict["html_tag"] = "progress"
+        if 'value' in kwargs:
+            self.attrs['value'] = kwargs.get('value')
+
+        if 'max_' in kwargs:
+            self.attrs['max'] = kwargs.get('max_')
+
+Progress = gen_Div_type(
+    HCType.passive,
+    "Progress",
+    ProgressMixin,
+    stytags_getter_func=lambda m=ui_styles: m.sty.shadcnui_progress,
+)
+
+# ============================ Radio Group ===========================
+class RadioGroupMixin:
+    def __init__(self, **kwargs):
+        self.domDict["vue_type"] = "shadcnui_component"
+        self.domDict["html_tag"] = "radiogroup"
+
+    Item = gen_Div_type_by_tag("Item", prefix="RadioGroup_")
+    Input = gen_Div_type_by_tag("Input", prefix="RadioGroup_")
+
+RadioGroup = gen_Div_type(
+    HCType.passive,
+    "RadioGroup",
+    RadioGroupMixin,
+    stytags_getter_func=lambda m=ui_styles: m.sty.shadcnui_radiogroup,
+)
+
+# ============================= resizable ============================
+class ResizableMixin:
+    def __init__(self, **kwargs):
+        self.domDict["vue_type"] = "shadcnui_component"
+        self.domDict["html_tag"] = "resizable"
+
+    PaneGroup = gen_Div_type_by_tag("PaneGroup", prefix="Resizable_", attrs=["direction"])
+    Pane = gen_Div_type_by_tag("Pane", prefix="Resizable_", attrs=["defaultSize"])
+    Handle = gen_Div_type_by_tag("Handle", prefix="Resizable_", attrs=["withHandle"])
+
+Resizable = gen_Div_type(
+    HCType.passive,
+    "Resizable",
+    ResizableMixin,
+    stytags_getter_func=lambda m=ui_styles: m.sty.shadcnui_resizable,
+)
+
+# ============================ scroll area ===========================
+
+class ScrollAreaMixin:
+    def __init__(self, **kwargs):
+        self.domDict["vue_type"] = "shadcnui_component"
+        self.domDict["html_tag"] = "scrollarea"
+
+        if "orientation" in kwargs:
+            self.attrs["orientation"] = kwargs.get("orientation")
+            
+ScrollArea = gen_Div_type(
+    HCType.passive,
+    "ScrollArea",
+    ScrollAreaMixin,
+    stytags_getter_func=lambda m=ui_styles: m.sty.shadcnui_scrollarea,
+)
+
+# ============================= separator ============================
+
+class SeparatorMixin:
+    def __init__(self, **kwargs):
+        self.domDict["vue_type"] = "shadcnui_component"
+        self.domDict["html_tag"] = "separator"
+        if 'orientation' in kwargs:
+            self.attrs['orientation'] = kwargs.get('orientation')
+            
+        
+Separator = gen_Div_type(
+    HCType.passive,
+    "Separator",
+    SeparatorMixin,
+    stytags_getter_func=lambda m=ui_styles: m.sty.shadcnui_separator,
+)
+
+
+# =============================== sheet ==============================
+class SheetMixin:
+    def __init__(self, **kwargs):
+        self.domDict["vue_type"] = "shadcnui_component"
+        self.domDict["html_tag"] = "sheet"
+
+    Trigger = gen_Div_type_by_tag("Trigger", prefix="Sheet_")
+    Content = gen_Div_type_by_tag("Content", prefix="Sheet_")
+    Header = gen_Div_type_by_tag("Header", prefix="Sheet_")
+    Title = gen_Div_type_by_tag("Title", prefix="Sheet_")
+    Description = gen_Div_type_by_tag("Description", prefix="Sheet_")
+
+Sheet = gen_Div_type(
+    HCType.passive,
+    "Sheet",
+    SheetMixin,
+    stytags_getter_func=lambda m=ui_styles: m.sty.shadcnui_sheet,
+)
+
+# ============================= skeleton =============================
+class SkeletonMixin:
+    def __init__(self, **kwargs):
+        self.domDict["vue_type"] = "shadcnui_component"
+        self.domDict["html_tag"] = "skeleton"
+
+Skeleton = gen_Div_type(
+    HCType.passive,
+    "Skeleton",
+    SkeletonMixin,
+    stytags_getter_func=lambda m=ui_styles: m.sty.shadcnui_skeleton,
+)
+
+
+
+# ============================== slider ==============================
+class SliderMixin:
+    def __init__(self, **kwargs):
+        self.domDict["vue_type"] = "shadcnui_component"
+        self.domDict["html_tag"] = "slider"
+
+        for attr in ["value", "step" ]:
+            if attr in kwargs:
+                self.attrs[attr] = kwargs.get("value")
+        if "max_" in kwargs:
+            self.attrs["max"] = kwargs.get("max_")
+        
+
+Slider = gen_Div_type(
+    HCType.passive,
+    "Slider",
+    SliderMixin,
+    stytags_getter_func=lambda m=ui_styles: m.sty.shadcnui_slider,
+)
+
+# ============================== switch ==============================
+
+class SwitchMixin:
+    def __init__(self, **kwargs):
+        self.domDict["vue_type"] = "shadcnui_component"
+        self.domDict["html_tag"] = "switch"
+
+        for attr in ["checked" ]:
+            if attr in kwargs:
+                self.attrs[attr] = kwargs.get("value")
+
+        
+
+Switch = gen_Div_type(
+    HCType.passive,
+    "Switch",
+    SwitchMixin,
+    stytags_getter_func=lambda m=ui_styles: m.sty.shadcnui_switch,
+)
+
+# =============================== table ==============================
+class TableMixin:
+    def __init__(self, **kwargs):
+        self.domDict["vue_type"] = "shadcnui_component"
+        self.domDict["html_tag"] = "table"
+
+    Root = gen_Div_type_by_tag("Root", prefix="Table_")
+    Caption = gen_Div_type_by_tag("Caption", prefix="Table_")
+    Header = gen_Div_type_by_tag("Header", prefix="Table_")
+    Body = gen_Div_type_by_tag("Body", prefix="Table_")
+    Row = gen_Div_type_by_tag("Row", prefix="Table_")
+    Head = gen_Div_type_by_tag("Head", prefix="Table_")
+    Cell = gen_Div_type_by_tag("Cell", prefix="Table_")
+
+Table = gen_Div_type(
+    HCType.passive,
+    "Table",
+    TableMixin,
+    stytags_getter_func=lambda m=ui_styles: m.sty.shadcnui_table,
+)
+
+
+# =============================== tabs ===============================
+class TabsMixin:
+    def __init__(self, **kwargs):
+        self.domDict["vue_type"] = "shadcnui_component"
+        self.domDict["html_tag"] = "tabs"
+
+        if 'value' in kwargs:
+            self.attrs['value']= kwargs.get('value')
+    Root = gen_Div_type_by_tag("Root", prefix="Tabs_")
+    List = gen_Div_type_by_tag("List", prefix="Tabs_", attrs=['value'])
+    Trigger = gen_Div_type_by_tag("Trigger", prefix="Tabs_")
+    Content = gen_Div_type_by_tag("Content", prefix="Tabs_", attrs=['value'])
+
+Tabs = gen_Div_type(
+    HCType.passive,
+    "Tabs",
+    TabsMixin,
+    stytags_getter_func=lambda m=ui_styles: m.sty.shadcnui_tabs,
+)
+
+# ============================= Textarea =============================
+class TextareaMixin:
+    def __init__(self, **kwargs):
+        self.domDict["vue_type"] = "shadcnui_component"
+        self.domDict["html_tag"] = "textarea"
+
+        for attr in ["placeholder" ]:
+            if attr in kwargs:
+                self.attrs[attr] = kwargs.get("placeholder")
+
+        
+
+Textarea = gen_Div_type(
+    HCType.passive,
+    "Textarea",
+    TextareaMixin,
+    stytags_getter_func=lambda m=ui_styles: m.sty.shadcnui_textarea,
+    static_addon_mixins = [TR.HCTextMixin]  
+)
+
+# ============================= Tooltipe =============================
+class TooltipMixin:
+    def __init__(self, **kwargs):
+        self.domDict["vue_type"] = "shadcnui_component"
+        self.domDict["html_tag"] = "tooltip"
+
+    Root = gen_Div_type_by_tag("Root", prefix="Tooltip_")
+    Trigger = gen_Div_type_by_tag("Trigger", prefix="Tooltip_")
+    Content = gen_Div_type_by_tag("Content", prefix="Tooltip_")
+
+Tooltip = gen_Div_type(
+    HCType.passive,
+    "Tooltip",
+    TooltipMixin,
+    stytags_getter_func=lambda m=ui_styles: m.sty.shadcnui_tooltip,
+    static_addon_mixins = [TR.HCTextMixin]  
+)
+
+
+# ============================== select ==============================
+class SelectMixin:
+    def __init__(self, **kwargs):
+        self.domDict.vue_type= "shadcnui_component"
+        self.domDict.html_tag = "select"
+
+    Trigger = gen_Div_type_by_tag("Trigger", prefix="Select_")
+    Value = gen_Div_type_by_tag("Value", prefix="Select_", attrs=["placeholder"])        
+    Group = gen_Div_type_by_tag("Group", prefix="Select_")
+    Item = gen_Div_type_by_tag("Item", prefix="Select_", addon_mixins= [TR.HCTextMixin],
+                               attrs=["value", "label", "disabled"])
+
+    Label = gen_Div_type_by_tag("Label", prefix="Select_", addon_mixins= [TR.HCTextMixin],
+                                
+                                )
+    Content = gen_Div_type_by_tag("Content", prefix="Select_")
+Select = gen_Div_type(
+        HCType.passive,
+        "Select",
+        SelectMixin,
+        stytags_getter_func=lambda m=ui_styles: m.sty.shadcnui_select,
+    
+        )
+
+
+#Select = assign_id(Select)    
