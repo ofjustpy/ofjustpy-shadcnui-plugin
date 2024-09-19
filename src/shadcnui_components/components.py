@@ -345,7 +345,16 @@ class InputMixin:
         for attr in ["placeholder", "disabled"]:
             self.attrs[attr] = kwargs.get(attr)
             
+        if "value" in kwargs:
+            self.domDict["value"] = kwargs.get("value")
             
+    @property
+    def value(self):
+        """
+        The 'value' attribute of the <data> element specifies the machine-readable value associated with the element.
+        """
+        return self.domDict.get("value", None)
+    
 
 Input = gen_Div_type(
         HCType.active,
