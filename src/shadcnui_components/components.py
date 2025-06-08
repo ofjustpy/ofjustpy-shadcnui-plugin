@@ -5,7 +5,13 @@ from ofjustpy_engine import HC_Div_type_mixins as TR
 from addict_tracking_changes import Dict
 from ofjustpy.htmlcomponents_impl import assign_id
 
-def gen_Div_type_by_tag(tag, prefix="", addon_mixins=[], html_tag=None, attrs=None):
+def gen_Div_type_by_tag(tag,
+                        prefix="",
+                        addon_mixins=None,
+                        html_tag=None,
+                        attrs=None,
+                        runtime_behaviour_type=HCType.passive
+                        ):
 
     class Mixin:
         def __init__(self, attrs=attrs, **kwargs):
@@ -15,8 +21,16 @@ def gen_Div_type_by_tag(tag, prefix="", addon_mixins=[], html_tag=None, attrs=No
                 for attr in attrs:
                     if attr in kwargs:
                         self.attrs[attr] = kwargs.get(attr)
-                        
-    class_def = gen_Div_type(HCType.passive,
+
+        # @property
+        # def html_tag(self):
+        #     return self.domDict.html_tag
+
+        # @html_tag.setter
+        # def html_tag(self, value):
+        #     self.domDict.html_tag = value
+        
+    class_def = gen_Div_type(runtime_behaviour_type,
                                  f"{prefix}{tag}",
                                  Mixin,
                                  stytags_getter_func=lambda m=ui_styles: getattr(m.sty,
@@ -146,7 +160,17 @@ class ButtonMixin:
 
         if "variant" in kwargs:
             self.attrs["variant"] = kwargs.get('variant')
-            
+        if "value" in kwargs:
+            self.domDict["value"] = kwargs.get("value")
+
+    @property
+    def value(self):
+        """
+        The 'value' attribute of the <data> element specifies the machine-readable value associated with the element.
+        """
+        return self.domDict.get("value", None)
+
+    
 Button = gen_Div_type(
         HCType.active,
         "Button",
