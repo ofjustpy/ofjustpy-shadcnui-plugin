@@ -7,7 +7,7 @@ from ofjustpy import icons as Icons
 oj.set_style("un")
 
 with writer_ctx:
-    with SCUI.Breadcrumb() as breadcrumb_box:
+    with SCUI.Breadcrumb.Root() as breadcrumb_box:
         with SCUI.Breadcrumb.List():
             with SCUI.Breadcrumb.Item():
                 with SCUI.Breadcrumb.Link(href="/"):
@@ -31,11 +31,12 @@ with writer_ctx:
                         pass
 app = oj.load_app()
 
-wp_endpoint = oj.create_endpoint(key="Avatar",
+wp_endpoint = oj.create_endpoint(key="Breadcrumb",
                                  childs = [
                                      breadcrumb_box
                                            ],
                                  
-                                 title="Avatar"
+                                 title="Avatar",
+                                 csr_bundle_dir="skeleton_shadcn_uibundle",
                                  )
 oj.add_jproute("/", wp_endpoint)                    

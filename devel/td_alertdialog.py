@@ -7,7 +7,7 @@ from ofjustpy import icons as Icons
 oj.set_style("un")
 
 with writer_ctx:
-    with SCUI.AlertDialog() as alertdialog_box:
+    with SCUI.AlertDialog.Root() as alertdialog_box:
         
         with SCUI.AlertDialog.Trigger():
             with oj.PD.Prose(text="Open"):
@@ -35,13 +35,22 @@ with writer_ctx:
                     with oj.PD.Prose(text="Continue"):
                         pass
 
+button1 = SCUI.Button(key="button1",
+                      text="Button",
+                      variant="outline",
+                      href="#",
+                      )
+                    
 app = oj.load_app()
 
 wp_endpoint = oj.create_endpoint(key="alert",
                                  childs = [
-                                     alertdialog_box
+                                     alertdialog_box,
+                                     button1
                                            ],
                                  
-                                 title="Alert"
+                                 title="Alert",
+                                 csr_bundle_dir="skeleton_shadcn_uibundle",
+                                 skeleton_data_theme="seafoam"
                                  )
 oj.add_jproute("/", wp_endpoint)                    

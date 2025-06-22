@@ -7,11 +7,11 @@ import shadcnui_components as SCUI
 oj.set_style("un")
 
 with writer_ctx:
-    with SCUI.Carousel(classes="w-full max-w-xs") as carousel_box:
+    with SCUI.Carousel.Root(classes="w-full max-w-xs") as carousel_box:
         with SCUI.Carousel.Content():
             with SCUI.Carousel.Item():
                 with oj.PD.Div(classes="p-1"):
-                    with SCUI.Card():
+                    with SCUI.Card.Root():
                         with SCUI.Card.Content(classes="flex aspect-square items-center justify-center p-6"):
                             with oj.PD.Span(classes="text-4xl font-semibold"):
                                 with oj.PD.Prose(text=f"1"):
@@ -19,7 +19,7 @@ with writer_ctx:
 
             with SCUI.Carousel.Item():
                 with oj.PD.Div(classes="p-1"):
-                    with SCUI.Card():
+                    with SCUI.Card.Root():
                         with SCUI.Card.Content(classes="flex aspect-square items-center justify-center p-6"):
                             with oj.PD.Span(classes="text-4xl font-semibold"):
                                 with oj.PD.Prose(text=f"2"):
@@ -27,7 +27,7 @@ with writer_ctx:
 
             with SCUI.Carousel.Item():
                 with oj.PD.Div(classes="p-1"):
-                    with SCUI.Card():
+                    with SCUI.Card.Root():
                         with SCUI.Card.Content(classes="flex aspect-square items-center justify-center p-6"):
                             with oj.PD.Span(classes="text-4xl font-semibold"):
                                 with oj.PD.Prose(text=f"3"):
@@ -35,7 +35,7 @@ with writer_ctx:
 
             with SCUI.Carousel.Item():
                 with oj.PD.Div(classes="p-1"):
-                    with SCUI.Card():
+                    with SCUI.Card.Root():
                         with SCUI.Card.Content(classes="flex aspect-square items-center justify-center p-6"):
                             with oj.PD.Span(classes="text-4xl font-semibold"):
                                 with oj.PD.Prose(text=f"4"):
@@ -65,7 +65,8 @@ wp_endpoint = oj.create_endpoint(key="carousel",
                                  childs = [
                                      carousel_box
                                            ],
-                                 title="Carousel"
+                                 title="Carousel",
+                                 csr_bundle_dir="skeleton_shadcn_uibundle",
                                  )
 
 oj.add_jproute("/", wp_endpoint)

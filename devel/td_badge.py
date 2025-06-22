@@ -7,20 +7,19 @@ from ofjustpy import icons as Icons
 oj.set_style("un")
 
 with writer_ctx:
-    with SCUI.Avatar.Root() as avatar_box:
-        with SCUI.Avatar.Image(src="https://avatars.githubusercontent.com/u/124599?v=4", alt="@shadcn"):
-            pass
-        with SCUI.Avatar.Fallback(text="CN"):
-            pass
-        
+    with SCUI.Badge(variant="outline", text="Badge") as badge_box:
+        pass
 app = oj.load_app()
 
-wp_endpoint = oj.create_endpoint(key="Avatar",
+wp_endpoint = oj.create_endpoint(key="alert",
                                  childs = [
-                                     avatar_box
+                                     badge_box
                                            ],
                                  
-                                 title="Avatar",
+                                 title="Badge",
                                  csr_bundle_dir="skeleton_shadcn_uibundle",
                                  )
-oj.add_jproute("/", wp_endpoint)                    
+oj.add_jproute("/", wp_endpoint)
+
+
+                

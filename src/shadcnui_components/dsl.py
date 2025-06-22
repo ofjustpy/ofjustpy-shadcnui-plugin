@@ -31,7 +31,6 @@ def translater(comp_type,
 
     #div_func = ast.Name(id="Breadcrumb", ctx=ast.Load()),
 
-    #print("comp_label = ", comp_label)
     #div_func = ast.Name(id=comp_label, ctx=ast.Load())
     call_ast = ast.Call(comp_label,
                         args=[],

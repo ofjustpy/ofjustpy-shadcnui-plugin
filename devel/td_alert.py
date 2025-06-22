@@ -4,10 +4,10 @@ import shadcnui_components as SCUI
 from py_tailwind_utils import *
 from ofjustpy import icons as Icons
 
-
+oj.set_style("un")
 
 with writer_ctx:
-    with SCUI.Alert() as alert_box:
+    with SCUI.Alert.Root() as alert_box:
         with SCUI.Alert.Title():
             with oj.PD.Prose(text="Heads up!"):
                 pass
@@ -43,7 +43,8 @@ wp_endpoint = oj.create_endpoint(key="alert",
                                      alert_box
                                            ],
                                  
-                                 title="Alert"
+                                 title="Alert",
+                                 csr_bundle_dir="skeleton_shadcn_uibundle",
                                  )
 oj.add_jproute("/", wp_endpoint)
 

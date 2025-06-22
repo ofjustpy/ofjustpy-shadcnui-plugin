@@ -68,6 +68,7 @@ class AlertMixin:
         self.domDict.html_tag = "alert"
         
 
+    Root = gen_Div_type_by_tag("Root", prefix="Alert_")        
     Title = gen_Div_type_by_tag("Title", prefix="Alert_")
     Description = gen_Div_type_by_tag("Description", prefix="Alert_")
         
@@ -86,6 +87,7 @@ class AlertDialogMixin:
         self.domDict["html_tag"] = "alertdialog"
 
 
+    Root = gen_Div_type_by_tag("Root", prefix="AlertDialog_")        
     Trigger = gen_Div_type_by_tag("Trigger", prefix="AlertDialog_")
     Content = gen_Div_type_by_tag("Content", prefix="AlertDialog_")
     Header = gen_Div_type_by_tag("Header", prefix="AlertDialog_")
@@ -109,6 +111,7 @@ class AvatarMixin:
         self.domDict["vue_type"] = "shadcnui_component"
         self.domDict["html_tag"] = "avatar"
 
+    Root = gen_Div_type_by_tag("Root", prefix="Avatar_")        
     Image = gen_Div_type_by_tag("Image", prefix="Avatar_",
                                 addon_mixins=[TR.ImgMixin],
                                 html_tag="avatar_image")
@@ -123,17 +126,41 @@ Avatar = gen_Div_type(
     stytags_getter_func=lambda m=ui_styles: m.sty.shadcnui_avatar,
 )
 
-shadcnui_avatar = []
 
-shadcnui_avatar_image = []
 
-shadcnui_avatar_fallback = []
+class BadgeMixin:
+    def __init__(self, **kwargs):
+        self.domDict["vue_type"] = "shadcnui_component"
+        self.domDict["html_tag"] = "badge"
+
+        if 'variant' in kwargs:
+            self.attrs['variant']= kwargs.get('variant')
+
+Badge = gen_Div_type(HCType.passive,
+                     "Badge",
+                     BadgeMixin,
+                     static_addon_mixins=[TR.HCTextMixin],
+                     stytags_getter_func=lambda m=ui_styles: m.sty.shadcnui_badge,
+                     )
+
+        
+    
+Avatar = gen_Div_type(
+    HCType.passive,
+    "Avatar",
+    AvatarMixin,
+    stytags_getter_func=lambda m=ui_styles: m.sty.shadcnui_avatar,
+)
+
+
+
 
 class BreadcrumbMixin:
     def __init__(self, **kwargs):
         self.domDict["vue_type"] = "shadcnui_component"
         self.domDict["html_tag"] = "breadcrumb"
 
+    Root = gen_Div_type_by_tag("Root", prefix="Breadcrumb_")                
     List = gen_Div_type_by_tag("List", prefix="Breadcrumb_")
     Item = gen_Div_type_by_tag("Item", prefix="Breadcrumb_")
     Link = gen_Div_type_by_tag("Link", prefix="Breadcrumb_", addon_mixins=[TR.AMixin], html_tag="breadcrumb_link")
@@ -198,6 +225,9 @@ class CardMixin:
     def __init__(self, **kwargs):
         self.domDict.vue_type= "shadcnui_component"
         self.domDict.html_tag = "card"
+
+    Root = gen_Div_type_by_tag("Root", prefix="Card_")
+    Header = gen_Div_type_by_tag("Header", prefix="Card_")
     Header = gen_Div_type_by_tag("Header", prefix="Card_")
     Title = gen_Div_type_by_tag("Title", prefix="Card_")
     Description = gen_Div_type_by_tag("Description", prefix="Card_")
@@ -218,6 +248,7 @@ class CarouselMixin:
         self.domDict["vue_type"] = "shadcnui_component"
         self.domDict["html_tag"] = "carousel"
 
+    Root  = gen_Div_type_by_tag("Root", prefix="Carousel_")        
     Content = gen_Div_type_by_tag("Content", prefix="Carousel_")
     Item = gen_Div_type_by_tag("Item", prefix="Carousel_")
     Previous = gen_Div_type_by_tag("Previous", prefix="Carousel_")
