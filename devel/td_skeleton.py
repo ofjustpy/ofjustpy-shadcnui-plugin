@@ -13,20 +13,21 @@ with writer_ctx:
         
         with oj.PD.Div(classes="space-y-2"):
             
-            with SCUI.Skeleton(classes="h-4 w-[400px]"):
+            with SCUI.Skeleton(extra_classes="h-4 w-[400px]"):
                 pass
             
-            with SCUI.Skeleton(classes="h-4 w-[400px]"):
+            with SCUI.Skeleton(extra_classes="h-4 w-[400px]"):
                 pass
 
             
 app = oj.load_app()
-wp_endpoint = oj.create_endpoint(key="Avatar",
+wp_endpoint = oj.create_endpoint(key="Skeleton",
                                  childs = [
                                      skeleton_box
                                            ],
                                  
-                                 title="Avatar"
+                                 title="Skeleton",
+                                 csr_bundle_dir="skeleton_shadcn_uibundle",
                                  )
 oj.add_jproute("/", wp_endpoint)                    
                     

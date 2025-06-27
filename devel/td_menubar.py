@@ -7,7 +7,7 @@ from py_tailwind_utils import *
 oj.set_style("un")
 
 with writer_ctx:
-    with SCUI.Menubar() as menubar_box:
+    with SCUI.Menubar.Root() as menubar_box:
         
         with SCUI.Menubar.Menu():
             
@@ -43,12 +43,13 @@ with writer_ctx:
                         pass
 app = oj.load_app()
 
-wp_endpoint = oj.create_endpoint(key="Avatar",
+wp_endpoint = oj.create_endpoint(key="Menubar",
                                  childs = [
                                      menubar_box
                                            ],
                                  
-                                 title="Avatar"
+                                 title="Menubar",
+                                 csr_bundle_dir="skeleton_shadcn_uibundle",
                                  )
 oj.add_jproute("/", wp_endpoint)                    
                     

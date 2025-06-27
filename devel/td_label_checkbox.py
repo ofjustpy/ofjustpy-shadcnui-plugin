@@ -33,12 +33,13 @@ checkbox_box = oj.HCCStatic.Div(key="Checkbox",
 
 app = oj.load_app()
 
-wp_endpoint = oj.create_endpoint(key="alert",
+wp_endpoint = oj.create_endpoint(key="checkbox",
                                  childs = [
                                      label_box
                                            ],
                                  
-                                 title="Alert"
+                                 title="Checkbox",
+                                 csr_bundle_dir="skeleton_shadcn_uibundle",
                                  )
 oj.add_jproute("/", wp_endpoint)
                 

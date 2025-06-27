@@ -8,7 +8,7 @@ oj.set_style("un")
 
 
 with writer_ctx:
-    with SCUI.Dialog() as dialog_box:
+    with SCUI.Dialog.Root() as dialog_box:
         
         with SCUI.Dialog.Trigger():
             with oj.PD.Prose(text="Open"):
@@ -29,12 +29,13 @@ with writer_ctx:
 
 app = oj.load_app()
 
-wp_endpoint = oj.create_endpoint(key="Avatar",
+wp_endpoint = oj.create_endpoint(key="Dialog",
                                  childs = [
                                      dialog_box
                                            ],
                                  
-                                 title="Avatar"
+                                 title="Dialog",
+                                 csr_bundle_dir="skeleton_shadcn_uibundle",
                                  )
 oj.add_jproute("/", wp_endpoint)                    
                     

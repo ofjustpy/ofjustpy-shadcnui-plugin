@@ -5,7 +5,7 @@ from py_tailwind_utils import *
 oj.set_style("un")
 
 with writer_ctx:
-    with SCUI.Pagination(count=100) as pagination_box:
+    with SCUI.Pagination.Root(count=100) as pagination_box:
         
         with SCUI.Pagination.Content():
             
@@ -53,12 +53,13 @@ with writer_ctx:
                     
 app = oj.load_app()
 
-wp_endpoint = oj.create_endpoint(key="Avatar",
+wp_endpoint = oj.create_endpoint(key="Pagination",
                                  childs = [
                                      pagination_box
                                            ],
                                  
-                                 title="Avatar"
+                                 title="Pagination",
+                                 csr_bundle_dir="skeleton_shadcn_uibundle",
                                  )
 oj.add_jproute("/", wp_endpoint)                    
                     

@@ -5,7 +5,7 @@ from py_tailwind_utils import *
 
 oj.set_style("un")
 with writer_ctx:
-    with SCUI.RadioGroup(value="comfortable") as radiogroup_box:
+    with SCUI.RadioGroup.Root(value="comfortable") as radiogroup_box:
         
         with oj.PD.Div(class_="flex items-center space-x-2"):
             
@@ -38,12 +38,13 @@ with writer_ctx:
             pass
 
 app = oj.load_app()
-wp_endpoint = oj.create_endpoint(key="Avatar",
+wp_endpoint = oj.create_endpoint(key="RadioGroup",
                                  childs = [
                                      radiogroup_box
                                            ],
                                  
-                                 title="Avatar"
+                                 title="RadioGroup",
+                                 csr_bundle_dir="skeleton_shadcn_uibundle",
                                  )
 oj.add_jproute("/", wp_endpoint)                    
                     

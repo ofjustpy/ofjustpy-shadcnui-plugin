@@ -1,5 +1,5 @@
 import ofjustpy as oj
-from shadcnui_components.components import Checkbox, Label, Input, Button
+from shadcnui_components import Checkbox, Label, Input, Button
 from py_tailwind_utils import *
 from ofjustpy.icons import FontAwesomeIcon
 from py_tailwind_utils import *
@@ -35,12 +35,13 @@ tlc = oj.PD.StackV(childs=[inp1, inp_with_label, inp_with_label_text, inp_with_b
           
 app = oj.load_app()
 
-wp_endpoint = oj.create_endpoint(key="alert",
+wp_endpoint = oj.create_endpoint(key="Input",
                                  childs = [
                                      tlc
-                                           ],
+                                 ],
                                  
-                                 title="Alert"
+                                 title="Input",
+                                 csr_bundle_dir="skeleton_shadcn_uibundle",
                                  )
 oj.add_jproute("/", wp_endpoint)
                 

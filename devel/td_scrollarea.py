@@ -18,12 +18,13 @@ with writer_ctx:
                     
 app = oj.load_app()
 
-wp_endpoint = oj.create_endpoint(key="Avatar",
+wp_endpoint = oj.create_endpoint(key="ScrollArea",
                                  childs = [
                                      scrollarea_box
                                            ],
                                  
-                                 title="Avatar"
+                                 title="ScrollArea",
+                                 csr_bundle_dir="skeleton_shadcn_uibundle",
                                  )
 oj.add_jproute("/", wp_endpoint)                    
                     

@@ -5,7 +5,7 @@ from py_tailwind_utils import *
 
 oj.set_style("un")
 with writer_ctx:
-    with SCUI.Drawer() as drawer_box:
+    with SCUI.Drawer.Root() as drawer_box:
         
         with SCUI.Drawer.Trigger():
             with oj.PD.Prose(text="Open"):
@@ -36,12 +36,13 @@ with writer_ctx:
 
 app = oj.load_app()
 
-wp_endpoint = oj.create_endpoint(key="Avatar",
+wp_endpoint = oj.create_endpoint(key="Drawer",
                                  childs = [
                                      drawer_box
                                            ],
                                  
-                                 title="Avatar"
+                                 title="Drawer",
+                                 csr_bundle_dir="skeleton_shadcn_uibundle",
                                  )
 oj.add_jproute("/", wp_endpoint)                    
                     

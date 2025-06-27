@@ -8,7 +8,7 @@ from py_tailwind_utils import *
 oj.set_style("un")
 
 with writer_ctx:
-    with SCUI.Accordion() as accordion_box:
+    with SCUI.Accordion.Root() as accordion_box:
         
         with SCUI.Accordion.Item(value="item-1"):
             
@@ -60,7 +60,8 @@ wp_endpoint = oj.create_endpoint(key="accordion",
                                            accordion_box
                                            ],
                                  
-                                 title="Accordion"
+                                 title="Accordion",
+                                 csr_bundle_dir="skeleton_shadcn_uibundle",
                                  )
 oj.add_jproute("/", wp_endpoint)
                 

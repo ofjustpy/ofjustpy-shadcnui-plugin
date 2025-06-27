@@ -18,7 +18,8 @@ wp_endpoint = oj.create_endpoint(key="Slider",
                                      slider_box
                                            ],
                                  
-                                 title="Avatar"
+                                 title="Slider",
+                                 csr_bundle_dir="skeleton_shadcn_uibundle",
                                  )
 oj.add_jproute("/", wp_endpoint)                    
                     

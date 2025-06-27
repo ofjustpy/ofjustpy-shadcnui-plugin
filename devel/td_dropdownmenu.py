@@ -5,7 +5,7 @@ from py_tailwind_utils import *
 
 oj.set_style("un")
 with writer_ctx:
-    with SCUI.DropdownMenu() as dropdown_menu_box:
+    with SCUI.DropdownMenu.Root() as dropdown_menu_box:
         
         with SCUI.DropdownMenu.Trigger():
             with oj.PD.Prose(text="Open"):
@@ -40,12 +40,13 @@ with writer_ctx:
 
 app = oj.load_app()
 
-wp_endpoint = oj.create_endpoint(key="Avatar",
+wp_endpoint = oj.create_endpoint(key="DropdownMenu",
                                  childs = [
                                      dropdown_menu_box
                                            ],
                                  
-                                 title="Avatar"
+                                 title="DropdownMenu",
+                                 csr_bundle_dir="skeleton_shadcn_uibundle",
                                  )
 oj.add_jproute("/", wp_endpoint)                    
                     

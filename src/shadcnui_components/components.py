@@ -51,6 +51,8 @@ class AccordionMixin:
             if key in kwargs:
                 self.attrs[key] = kwargs[key]
 
+        pass
+    Root = gen_Div_type_by_tag("Root", prefix="Accordion_")
     Item = gen_Div_type_by_tag("Item", prefix="Accordion_", attrs=['value', 'disabled', 'asChild', 'el'])
     Trigger = gen_Div_type_by_tag("Trigger", prefix="Accordion_")
     Content = gen_Div_type_by_tag("Content", prefix="Accordion_")
@@ -283,7 +285,8 @@ class CollapsibleMixin:
     def __init__(self, **kwargs):
         self.domDict["vue_type"] = "shadcnui_component"
         self.domDict["html_tag"] = "collapsible"
-
+        pass
+    Root = gen_Div_type_by_tag("Root", prefix="Collapsible_")
     Trigger = gen_Div_type_by_tag("Trigger", prefix="Collapsible_")
     Content = gen_Div_type_by_tag("Content", prefix="Collapsible_")
 
@@ -294,6 +297,23 @@ Collapsible = gen_Div_type(
     stytags_getter_func=lambda m=ui_styles: m.sty.shadcnui_collapsible,
 )
 
+
+class ContextMenuMixin:
+    def __init__(self, **kwargs):
+        self.domDict["vue_type"] = "shadcnui_component"
+        self.domDict["html_tag"] = "context-menu"
+        pass
+    Root = gen_Div_type_by_tag("Root", prefix="ContextMenu_")
+    Trigger = gen_Div_type_by_tag("Trigger", prefix="ContextMenu_")
+    Content = gen_Div_type_by_tag("Content", prefix="ContextMenu_")
+    Item = gen_Div_type_by_tag("Item", prefix="ContextMenu_")
+
+ContextMenu = gen_Div_type(
+    HCType.passive,
+    "ContextMenu",
+    ContextMenuMixin,
+    stytags_getter_func=lambda m=ui_styles: m.sty.shadcnui_context_menu,
+)
 
 class CommandMixin:
     def __init__(self, **kwargs):
@@ -319,18 +339,18 @@ class DialogMixin:
         self.domDict["vue_type"] = "shadcnui_component"
         self.domDict["html_tag"] = "dialog"
 
+    Root = gen_Div_type_by_tag("Root", prefix="Dialog_")        
     Trigger = gen_Div_type_by_tag("Trigger", prefix="Dialog_")
     Content = gen_Div_type_by_tag("Content", prefix="Dialog_")
     Header = gen_Div_type_by_tag("Header", prefix="Dialog_")
     Title = gen_Div_type_by_tag("Title", prefix="Dialog_")
     Description = gen_Div_type_by_tag("Description", prefix="Dialog_")
 
-Dialog = gen_Div_type(
-    HCType.passive,
-    "Dialog",
-    DialogMixin,
-    stytags_getter_func=lambda m=ui_styles: m.sty.shadcnui_dialog,
-)
+Dialog = gen_Div_type(HCType.passive,
+                      "Dialog",
+                      DialogMixin,
+                      stytags_getter_func=lambda m=ui_styles: m.sty.shadcnui_dialog,
+                      )
 
 
 class DrawerMixin:
@@ -338,6 +358,9 @@ class DrawerMixin:
         self.domDict["vue_type"] = "shadcnui_component"
         self.domDict["html_tag"] = "drawer"
 
+        pass
+
+    Root = gen_Div_type_by_tag("Root", prefix="Drawer_")
     Trigger = gen_Div_type_by_tag("Trigger", prefix="Drawer_")
     Content = gen_Div_type_by_tag("Content", prefix="Drawer_")
     Header = gen_Div_type_by_tag("Header", prefix="Drawer_")
@@ -359,7 +382,9 @@ class DropdownMenuMixin:
     def __init__(self, **kwargs):
         self.domDict["vue_type"] = "shadcnui_component"
         self.domDict["html_tag"] = "dropdownmenu"
+        pass
 
+    Root = gen_Div_type_by_tag("Root", prefix="DropdownMenu_")
     Trigger = gen_Div_type_by_tag("Trigger", prefix="DropdownMenu_")
     Content = gen_Div_type_by_tag("Content", prefix="DropdownMenu_")
     Group = gen_Div_type_by_tag("Group", prefix="DropdownMenu_")
@@ -378,7 +403,9 @@ class HoverCardMixin:
     def __init__(self, **kwargs):
         self.domDict["vue_type"] = "shadcnui_component"
         self.domDict["html_tag"] = "hovercard"
+        pass
 
+    Root = gen_Div_type_by_tag("Root", prefix="HoverCard_")
     Trigger = gen_Div_type_by_tag("Trigger", prefix="HoverCard_")
     Content = gen_Div_type_by_tag("Content", prefix="HoverCard_")
 
@@ -413,7 +440,7 @@ class InputMixin:
 
 Input = gen_Div_type(
         HCType.active,
-        "input",
+        "Input",
         InputMixin,
         stytags_getter_func=lambda m=ui_styles: m.sty.shadcnui_input,
     static_addon_mixins = [TR.HCTextMixin]  
@@ -430,7 +457,7 @@ class LabelMixin:
 
 Label = gen_Div_type(
     HCType.passive,
-        "label",
+        "Label",
         LabelMixin,
         stytags_getter_func=lambda m=ui_styles: m.sty.shadcnui_label,
     static_addon_mixins = [TR.HCTextMixin]  
@@ -441,6 +468,7 @@ class MenubarMixin:
         self.domDict["vue_type"] = "shadcnui_component"
         self.domDict["html_tag"] = "menubar"
 
+    Root = gen_Div_type_by_tag("Root", prefix="Menubar_")        
     Menu = gen_Div_type_by_tag("Menu", prefix="Menubar_")
     Trigger = gen_Div_type_by_tag("Trigger", prefix="Menubar_")
     Content = gen_Div_type_by_tag("Content", prefix="Menubar_")
@@ -455,6 +483,45 @@ Menubar = gen_Div_type(
     stytags_getter_func=lambda m=ui_styles: m.sty.shadcnui_menubar,
 )
 
+class NavigationMenuMixin:
+    def __init__(self, **kwargs):
+        self.domDict["vue_type"] = "shadcnui_component"
+        self.domDict["html_tag"] = "navigation-menu"
+        pass
+    Root = gen_Div_type_by_tag("Root", prefix="NavigationMenu_")
+    List = gen_Div_type_by_tag("List", prefix="NavigationMenu_")
+    Item = gen_Div_type_by_tag("Item", prefix="NavigationMenu_")
+    Trigger = gen_Div_type_by_tag("Trigger", prefix="NavigationMenu_")
+    Content = gen_Div_type_by_tag("Content", prefix="NavigationMenu_")
+    Link = gen_Div_type_by_tag("Link", prefix="NavigationMenu_")
+
+NavigationMenu = gen_Div_type(
+    HCType.passive,
+    "NavigationMenu",
+    NavigationMenuMixin,
+    stytags_getter_func=lambda m=ui_styles: m.sty.shadcnui_navigation_menu,
+)
+
+class PopoverMixin:
+    def __init__(self, **kwargs):
+        self.domDict["vue_type"] = "shadcnui_component"
+        self.domDict["html_tag"] = "popover"
+        pass
+    Root = gen_Div_type_by_tag("Root", prefix="Popover_")
+    Trigger = gen_Div_type_by_tag("Trigger", prefix="Popover_")
+    Content = gen_Div_type_by_tag("Content", prefix="Popover_")
+
+Popover = gen_Div_type(
+    HCType.passive,
+    "Popover",
+    PopoverMixin,
+    stytags_getter_func=lambda m=ui_styles: m.sty.shadcnui_popover,
+)
+
+
+
+
+
 # ============================ pagination ============================
 
 class PaginationMixin:
@@ -462,6 +529,8 @@ class PaginationMixin:
         self.domDict["vue_type"] = "shadcnui_component"
         self.domDict["html_tag"] = "pagination"
         self.attrs["count"] = 100
+
+    Root = gen_Div_type_by_tag("Root", prefix="Pagination_")
     Content = gen_Div_type_by_tag("Content", prefix="Pagination_")
     Item = gen_Div_type_by_tag("Item", prefix="Pagination_")
     PrevButton = gen_Div_type_by_tag("PrevButton", prefix="Pagination_")
@@ -500,7 +569,9 @@ class RadioGroupMixin:
     def __init__(self, **kwargs):
         self.domDict["vue_type"] = "shadcnui_component"
         self.domDict["html_tag"] = "radiogroup"
+        pass
 
+    Root = gen_Div_type_by_tag("Root", prefix="RadioGroup_")
     Item = gen_Div_type_by_tag("Item", prefix="RadioGroup_")
     Input = gen_Div_type_by_tag("Input", prefix="RadioGroup_")
 
@@ -521,8 +592,7 @@ class ResizableMixin:
     Pane = gen_Div_type_by_tag("Pane", prefix="Resizable_", attrs=["defaultSize"])
     Handle = gen_Div_type_by_tag("Handle", prefix="Resizable_", attrs=["withHandle"])
 
-Resizable = gen_Div_type(
-    HCType.passive,
+Resizable = gen_Div_type(HCType.passive,
     "Resizable",
     ResizableMixin,
     stytags_getter_func=lambda m=ui_styles: m.sty.shadcnui_resizable,
@@ -568,7 +638,9 @@ class SheetMixin:
     def __init__(self, **kwargs):
         self.domDict["vue_type"] = "shadcnui_component"
         self.domDict["html_tag"] = "sheet"
-
+        pass
+    
+    Root = gen_Div_type_by_tag("Root", prefix="Sheet_")
     Trigger = gen_Div_type_by_tag("Trigger", prefix="Sheet_")
     Content = gen_Div_type_by_tag("Content", prefix="Sheet_")
     Header = gen_Div_type_by_tag("Header", prefix="Sheet_")
@@ -699,12 +771,15 @@ Textarea = gen_Div_type(
     static_addon_mixins = [TR.HCTextMixin]  
 )
 
-# ============================= Tooltipe =============================
+# ============================= Tooltip =============================
+
+# Class definition for Tooltip
 class TooltipMixin:
     def __init__(self, **kwargs):
         self.domDict["vue_type"] = "shadcnui_component"
         self.domDict["html_tag"] = "tooltip"
-
+        pass
+    Provider = gen_Div_type_by_tag("Provider", prefix="Tooltip_")
     Root = gen_Div_type_by_tag("Root", prefix="Tooltip_")
     Trigger = gen_Div_type_by_tag("Trigger", prefix="Tooltip_")
     Content = gen_Div_type_by_tag("Content", prefix="Tooltip_")
@@ -714,8 +789,12 @@ Tooltip = gen_Div_type(
     "Tooltip",
     TooltipMixin,
     stytags_getter_func=lambda m=ui_styles: m.sty.shadcnui_tooltip,
-    static_addon_mixins = [TR.HCTextMixin]  
 )
+
+
+
+
+
 
 
 # ============================== select ==============================
@@ -723,7 +802,9 @@ class SelectMixin:
     def __init__(self, **kwargs):
         self.domDict.vue_type= "shadcnui_component"
         self.domDict.html_tag = "select"
+        pass
 
+    Root = gen_Div_type_by_tag("Root", prefix="Select_")
     Trigger = gen_Div_type_by_tag("Trigger", prefix="Select_")
     Value = gen_Div_type_by_tag("Value", prefix="Select_", attrs=["placeholder"])        
     Group = gen_Div_type_by_tag("Group", prefix="Select_")

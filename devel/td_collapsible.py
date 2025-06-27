@@ -7,7 +7,7 @@ from ofjustpy import icons as Icons
 oj.set_style("un")
 
 with writer_ctx:
-    with SCUI.Collapsible() as collapsible_box:
+    with SCUI.Collapsible.Root() as collapsible_box:
         with SCUI.Collapsible.Trigger():
             with oj.PD.Prose(text="Can I use this in my project?"):
                 pass
@@ -21,11 +21,12 @@ with writer_ctx:
 app = oj.load_app()
 adiv = oj.PC.Div(childs=[collapsible_box])
 
-wp_endpoint = oj.create_endpoint(key="carousel",
+wp_endpoint = oj.create_endpoint(key="collapsible",
                                  childs = [
                                      adiv
                                            ],
-                                 title="Carousel"
+                                 title="Collapsible",
+                                 csr_bundle_dir="skeleton_shadcn_uibundle",
                                  )
 
 oj.add_jproute("/", wp_endpoint)

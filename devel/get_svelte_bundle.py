@@ -6,6 +6,7 @@ from svelte_safelist_builder import get_svelte_safelist
 import sys
 target_module = "runner"
 dep_modules = [
+    "td_accordion"
     #"td_alertdialog",
     #"td_alert",
     #"td_avatar",
@@ -13,8 +14,33 @@ dep_modules = [
     #"td_badge",
     #"td_button",
     #"td_cards",
-    "td_carousel"
-    
+    #"td_carousel"
+    #"td_label_checkbox",
+    #"td_collapsible"
+    #"td_context_menu"
+    #"td_dialog",
+    #"td_drawer",
+    #"td_dropdownmenu"
+    #"td_hovercard",
+    #"td_input"
+    #"td_menubar"
+    #"td_navigationmenu",
+    #"td_pagination",
+    #"td_popover",
+    #"td_progress",
+    #"td_radiogroup",
+    #"td_resizable",
+    #"td_scrollarea",
+    #"td_select",
+    #"td_separator",
+    #"td_sheet"
+    #"td_skeleton",
+    #"td_slider"
+    #"td_switch",
+    #"td_table",
+    #"td_tabs",
+    #"td_textarea",
+    #"td_tooltip"
 ]
 
 

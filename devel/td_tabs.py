@@ -5,7 +5,7 @@ from py_tailwind_utils import *
 oj.set_style("un")
 
 with writer_ctx:
-    with SCUI.Tabs(value="password", class_="w-[400px]") as tabs_box:
+    with SCUI.Tabs.Root(value="password", class_="w-[400px]") as tabs_box:
         
         with SCUI.Tabs.List():
             
@@ -26,11 +26,13 @@ with writer_ctx:
                 pass
 
 app = oj.load_app()
-wp_endpoint = oj.create_endpoint(key="Avatar",
+wp_endpoint = oj.create_endpoint(key="Tabs",
                                  childs = [
                                      tabs_box
-                                           ],
+                                 ],
                                  
-                                 title="Avatar"
+                                 title="Tabs",
+                                 csr_bundle_dir="skeleton_shadcn_uibundle",
+                                 
                                  )
 oj.add_jproute("/", wp_endpoint)                                                    

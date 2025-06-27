@@ -7,8 +7,8 @@ from py_tailwind_utils import *
 oj.set_style("un")
 
 with writer_ctx:
-    with SCUI.Select() as select_box:
-        with SCUI.Select.Trigger(classes="w-[180px]"):
+    with SCUI.Select.Root() as select_box:
+        with SCUI.Select.Trigger(extra_classes="w-[180px]"):
             
             with SCUI.Select.Value(placeholder="Theme"):
                 pass
@@ -38,7 +38,8 @@ wp_endpoint = oj.create_endpoint(key="select",
                                      select_box
                                            ],
                                  
-                                 title="Select"
+                                 title="Select",
+                                 csr_bundle_dir="skeleton_shadcn_uibundle",
                                  )
 oj.add_jproute("/", wp_endpoint)
                 

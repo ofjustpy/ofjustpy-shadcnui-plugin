@@ -4,7 +4,10 @@ from .components import (Alert, AlertDialog, Avatar,
                          Button,
                          Card,
                          Carousel,
+                         Checkbox,
                          Collapsible,
+                         
+                         ContextMenu,
                          Command,
                          Dialog,
                          Drawer,
@@ -12,7 +15,9 @@ from .components import (Alert, AlertDialog, Avatar,
                          DropdownMenu,
                          HoverCard,
                          Menubar,
+                         NavigationMenu,
                          Pagination,
+                         Popover,
                          Progress,
                          RadioGroup,
                          Resizable,
@@ -31,7 +36,7 @@ from .components import (Alert, AlertDialog, Avatar,
                          Calendar,
 
 
-                         Checkbox,
+
                          Input,
                          Select
                          )

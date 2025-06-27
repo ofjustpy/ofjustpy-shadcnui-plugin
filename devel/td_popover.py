@@ -4,23 +4,24 @@ import shadcnui_components as SCUI
 from py_tailwind_utils import *
 oj.set_style("un")
 
+
+# Python example for Popover
 with writer_ctx:
-    with SCUI.Progress(value=33, max_=100, extra_classes="w-[60%]") as progress_box:
-        
-        pass
-
-
-
-                    
+    with SCUI.Popover.Root() as popover_root:
+        with SCUI.Popover.Trigger():
+            with oj.PD.Prose(text="Open"):
+                pass
+        with SCUI.Popover.Content():
+            with oj.PD.Prose(text="Place content for the popover here."):
+                pass
 app = oj.load_app()
 
-wp_endpoint = oj.create_endpoint(key="Progress",
+wp_endpoint = oj.create_endpoint(key="Popover",
                                  childs = [
-                                     progress_box
+                                     popover_root
                                            ],
                                  
-                                 title="Progress",
+                                 title="Popover",
                                  csr_bundle_dir="skeleton_shadcn_uibundle",
                                  )
 oj.add_jproute("/", wp_endpoint)                    
-                    

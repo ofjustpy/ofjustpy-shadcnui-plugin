@@ -9,7 +9,7 @@ from py_tailwind_utils import *
 oj.set_style("un")
 
 with writer_ctx:
-    with SCUI.HoverCard() as hovercard_box:
+    with SCUI.HoverCard.Root() as hovercard_box:
         
         with SCUI.HoverCard.Trigger():
             with oj.PD.Prose(text="Hover"):
@@ -21,12 +21,13 @@ with writer_ctx:
 
 app = oj.load_app()
 
-wp_endpoint = oj.create_endpoint(key="Avatar",
+wp_endpoint = oj.create_endpoint(key="HoverCard",
                                  childs = [
                                      hovercard_box
                                            ],
                                  
-                                 title="Avatar"
+                                 title="HoverCard",
+                                 csr_bundle_dir="skeleton_shadcn_uibundle",
                                  )
 oj.add_jproute("/", wp_endpoint)                    
                                 
