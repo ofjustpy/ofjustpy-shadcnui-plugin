@@ -1,5 +1,8 @@
 import macropy.activate
-import td_accordion
+import td_bindvalue_component
+#import devel_jsexpr_bundler
+#import td_jsexprs
+#import td_accordion
 #mport td_alertdialog
 #import td_alert
 #import td_avatar
@@ -8,9 +11,11 @@ import td_accordion
 #import td_button
 #import td_cards
 #import td_carousel
+#import td_chart
 #import td_label_checkbox
 #import td_collapsible
 #import td_context_menu
+#import td_calender
 #import td_dialog
 #import td_drawer
 #import td_dropdownmenu

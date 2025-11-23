@@ -36,7 +36,7 @@ with writer_ctx:
             
             with SCUI.Table.Row():
                 
-                with SCUI.Table.Cell(class_="font-medium"):
+                with SCUI.Table.Cell(classes="font-medium", extra_classes="w-[100px]"):
                     with oj.PD.Prose(text="INV001"):
                         pass
                 

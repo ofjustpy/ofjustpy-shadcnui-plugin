@@ -1,4 +1,6 @@
-from .components import (Alert, AlertDialog, Avatar,
+from .components import (Alert, AlertDialog,
+                         AspectRatio,
+                         Avatar,
                          Badge,
                          Breadcrumb,
                          Button,
@@ -25,7 +27,7 @@ from .components import (Alert, AlertDialog, Avatar,
                          Separator,
                          Sheet,
                          Skeleton,
-                         Slider,
+                         #Slider,
                          Switch,
                          Table,
                          Tabs,
@@ -33,10 +35,12 @@ from .components import (Alert, AlertDialog, Avatar,
                          Label,
                          Tooltip,
                          Accordion,
-                         Calendar,
+
 
 
 
                          Input,
                          Select
                          )
+from .chart import Chart
+from .bind_value_components import (Slider, Calendar, RangeCalendar)

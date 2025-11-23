@@ -1,3 +1,4 @@
+
 from ofjustpy.Div_TF import gen_Div_type
 from ofjustpy_engine.HCType import HCType
 from ofjustpy import ui_styles
@@ -5,18 +6,28 @@ from ofjustpy_engine import HC_Div_type_mixins as TR
 from addict_tracking_changes import Dict
 from ofjustpy.htmlcomponents_impl import assign_id
 
+# class BindValueMixin:
+#     def __init__(self, attrs=attrs, **kwargs):
+        
 def gen_Div_type_by_tag(tag,
                         prefix="",
+                        #bind_value = False,
                         addon_mixins=None,
                         html_tag=None,
                         attrs=None,
                         runtime_behaviour_type=HCType.passive
                         ):
+    """
+    bind_value: implies that component is tied to a value e.g.
+    <Menubar.RadioGroup bind:value={profileRadioValue}>
+    """
 
     class Mixin:
         def __init__(self, attrs=attrs, **kwargs):
             self.domDict.vue_type = "shadcnui_component"
             self.domDict.html_tag = f"{prefix}{tag}".lower()
+            self.domDict.js_eval_map = kwargs.get('js_eval_map', {})
+            
             if attrs:
                 for attr in attrs:
                     if attr in kwargs:
@@ -120,7 +131,26 @@ class AvatarMixin:
     Fallback = gen_Div_type_by_tag("Fallback",
                                    addon_mixins=[TR.HCTextMixin],
                                    prefix="Avatar_"
+
+
                                    )
+
+class AspectRatioMixin:
+    def __init__(self, **kwargs):
+        self.domDict["vue_type"] = "shadcnui_component"
+        self.domDict["html_tag"] = "aspectratio"
+
+        if 'ratio' in kwargs:
+            self.attrs['ratio']= kwargs.get('ratio')
+
+AspectRatio = gen_Div_type(HCType.passive,
+                     "AspectRatio",
+                     AspectRatioMixin,
+                     static_addon_mixins=[TR.HCTextMixin],
+                     stytags_getter_func=lambda m=ui_styles: m.sty.shadcnui_aspectratio,
+                     )
+
+
 Avatar = gen_Div_type(
     HCType.passive,
     "Avatar",
@@ -209,32 +239,21 @@ Button = gen_Div_type(
         )
 Button = assign_id(Button)
 
-class CalendarMixin:
-    def __init__(self, **kwargs):
-        self.domDict.vue_type= "shadcnui_component"
-        self.domDict.html_tag = "calendar"
 
-        
-
-Calendar = gen_Div_type(
-        HCType.passive,
-        "Calendar",
-        CalendarMixin,
-        stytags_getter_func=lambda m=ui_styles: m.sty.shadcnui_calendar,
-        )
 
 class CardMixin:
     def __init__(self, **kwargs):
         self.domDict.vue_type= "shadcnui_component"
         self.domDict.html_tag = "card"
-
+        pass
     Root = gen_Div_type_by_tag("Root", prefix="Card_")
     Header = gen_Div_type_by_tag("Header", prefix="Card_")
-    Header = gen_Div_type_by_tag("Header", prefix="Card_")
+    #Header = gen_Div_type_by_tag("Header", prefix="Card_")
     Title = gen_Div_type_by_tag("Title", prefix="Card_")
     Description = gen_Div_type_by_tag("Description", prefix="Card_")
     Content = gen_Div_type_by_tag("Content", prefix="Card_")
     Footer = gen_Div_type_by_tag("Footer", prefix="Card_")
+    Action = gen_Div_type_by_tag("Action", prefix="Card_")
 
 
 Card = gen_Div_type(
@@ -345,6 +364,7 @@ class DialogMixin:
     Header = gen_Div_type_by_tag("Header", prefix="Dialog_")
     Title = gen_Div_type_by_tag("Title", prefix="Dialog_")
     Description = gen_Div_type_by_tag("Description", prefix="Dialog_")
+    Footer = gen_Div_type_by_tag("Footer", prefix="Dialog_")
 
 Dialog = gen_Div_type(HCType.passive,
                       "Dialog",
@@ -475,6 +495,10 @@ class MenubarMixin:
     Item = gen_Div_type_by_tag("Item", prefix="Menubar_")
     Shortcut = gen_Div_type_by_tag("Shortcut", prefix="Menubar_")
     Separator = gen_Div_type_by_tag("Separator", prefix="Menubar_")
+    RadioGroup = gen_Div_type_by_tag("RadioGroup",
+                                     prefix="Menubar_",
+                                     #bind_value = True
+                                     )
 
 Menubar = gen_Div_type(
     HCType.passive,
@@ -646,6 +670,8 @@ class SheetMixin:
     Header = gen_Div_type_by_tag("Header", prefix="Sheet_")
     Title = gen_Div_type_by_tag("Title", prefix="Sheet_")
     Description = gen_Div_type_by_tag("Description", prefix="Sheet_")
+    Footer = gen_Div_type_by_tag("Footer", prefix="Sheet_")
+    Close = gen_Div_type_by_tag("Close", prefix="Sheet_")
 
 Sheet = gen_Div_type(
     HCType.passive,
@@ -670,9 +696,15 @@ Skeleton = gen_Div_type(
 
 
 # ============================== slider ==============================
+class BindValueMixin:
+    def __init__(self, **kwargs):
+        self.has_bind_value = True
+        pass
+    
+        
 class SliderMixin:
     def __init__(self, **kwargs):
-        self.domDict["vue_type"] = "shadcnui_component"
+        self.domDict["vue_type"] = "shadcnui_bind_value_component"
         self.domDict["html_tag"] = "slider"
 
         for attr in ["value", "step" ]:
@@ -682,12 +714,14 @@ class SliderMixin:
             self.attrs["max"] = kwargs.get("max_")
         
 
-Slider = gen_Div_type(
-    HCType.passive,
+_Slider = gen_Div_type(
+    HCType.active,
     "Slider",
     SliderMixin,
     stytags_getter_func=lambda m=ui_styles: m.sty.shadcnui_slider,
+    static_addon_mixins = [BindValueMixin]  
 )
+Slider=assign_id(_Slider)
 
 # ============================== switch ==============================
 
@@ -718,6 +752,9 @@ class TableMixin:
     Root = gen_Div_type_by_tag("Root", prefix="Table_")
     Caption = gen_Div_type_by_tag("Caption", prefix="Table_")
     Header = gen_Div_type_by_tag("Header", prefix="Table_")
+
+    Footer = gen_Div_type_by_tag("Footer", prefix="Table_")
+    
     Body = gen_Div_type_by_tag("Body", prefix="Table_")
     Row = gen_Div_type_by_tag("Row", prefix="Table_")
     Head = gen_Div_type_by_tag("Head", prefix="Table_")
@@ -739,9 +776,12 @@ class TabsMixin:
 
         if 'value' in kwargs:
             self.attrs['value']= kwargs.get('value')
-    Root = gen_Div_type_by_tag("Root", prefix="Tabs_")
+    Root = gen_Div_type_by_tag("Root", prefix="Tabs_", attrs=['value'])
     List = gen_Div_type_by_tag("List", prefix="Tabs_", attrs=['value'])
-    Trigger = gen_Div_type_by_tag("Trigger", prefix="Tabs_")
+    Trigger = gen_Div_type_by_tag("Trigger",
+                                  prefix="Tabs_",
+                                  attrs=['value']
+                                  )
     Content = gen_Div_type_by_tag("Content", prefix="Tabs_", attrs=['value'])
 
 Tabs = gen_Div_type(

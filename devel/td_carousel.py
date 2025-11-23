@@ -63,8 +63,8 @@ adiv = oj.PC.Div(childs=[carousel_box])
 
 wp_endpoint = oj.create_endpoint(key="carousel",
                                  childs = [
-                                     carousel_box
-                                           ],
+                                     oj.Halign(carousel_box)
+                                 ],
                                  title="Carousel",
                                  csr_bundle_dir="skeleton_shadcn_uibundle",
                                  )
