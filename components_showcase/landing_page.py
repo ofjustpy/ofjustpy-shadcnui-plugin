@@ -1,7 +1,7 @@
-import ofjustpy as oj
-oj.set_style("un")
+import kavya as kv
+kv.set_style("un")
 from py_tailwind_utils import *
-#from demo_accordion import accordion_box
+from demo_accordion import accordion_box
 #from demo_alertdialog import alertdialog_box
 #from demo_alert import alert_box
 #from demo_aspectratio import aspectratio_box
@@ -20,24 +20,24 @@ from py_tailwind_utils import *
 #from demo_dropdown_menu import dropdown_menu_box
 #from demo_tabs import tabs_box
 #from demo_table import table_box
-from demo_rangecalendar import range_calendar_box
-app = oj.load_app()
-centered_box = oj.PD.Valign(oj.PD.Halign(#carousel_box,
-    #context_menu_box,
-    #dialog_box,
-    #drawer_box,
-    #dropdown_menu_box,
-    #tabs_box,
-    #table_box,
-    range_calendar_box,
+#from demo_rangecalendar import range_calendar_box
+app = kv.load_app()
+# centered_box = oj.PD.Valign(oj.PD.Halign(#carousel_box,
+#     #context_menu_box,
+#     #dialog_box,
+#     #drawer_box,
+#     #dropdown_menu_box,
+#     #tabs_box,
+#     #table_box,
+#     range_calendar_box,
     
-    twsty_tags=[W/screen]
-), twsty_tags=[H/screen]
-                            )
+#     twsty_tags=[W/screen]
+# ), twsty_tags=[H/screen]
+#                             )
 
-wp_endpoint = oj.create_endpoint(key="components_showcase",
+wp_endpoint = kv.create_endpoint(key="components_showcase",
                                  childs = [                                           
-                                     #accordion_box
+                                     accordion_box
                                      #alertdialog_box
                                      #alert_box
                                      #aspectratio_box
@@ -48,12 +48,12 @@ wp_endpoint = oj.create_endpoint(key="components_showcase",
                                      #calendar_box
                                      #card_box
                                      #carousel_box
-                                     centered_box
+                                     #centered_box
                                      
  ],
                                  
                                  title="Components Showcase",
-                                 csr_bundle_dir="svelte_bundle",
+                                 svelte_bundle_dir="svelte_bundle",
                                  )
-oj.add_jproute("/", wp_endpoint)
+kv.add_route("/", wp_endpoint)
                 

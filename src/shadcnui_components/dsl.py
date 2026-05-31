@@ -99,7 +99,7 @@ def deal_with_inner_with_block(block_tree):
     assert False
     
 @macros.block
-def writer_ctx(tree, *args, **kw):
+def MuCtx(tree, *args, **kw):
     """
     a macro that patches the ast-tree
     : in our use-case -- tree is a list of With nodes

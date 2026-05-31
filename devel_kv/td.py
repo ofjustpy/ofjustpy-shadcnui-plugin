@@ -1,6 +1,6 @@
 import kavya as kv
-import shadcnui_components as SCUI
 from kavya.dsl import macros, MuCtx
+import shadcnui_components as SCUI
 from py_tailwind_utils import *
 from kavya_components import LinearSelector
 

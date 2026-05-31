@@ -1,6 +1,6 @@
 import macropy.activate
-import ofjustpy as oj
-oj.set_style("un")
+import kavya as kv
+kv.set_style("un")
 import landing_page
 
-app = oj.load_app()
+app = kv.load_app()
