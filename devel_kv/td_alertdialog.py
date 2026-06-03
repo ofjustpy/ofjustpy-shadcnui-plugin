@@ -7,7 +7,7 @@ from py_tailwind_utils import *
 
 kv.set_style("un")
 with MuCtx:
-    with kv.AD.SCUI.divactive.AlertDialog.Root(key="alert_dialog_1") as alert_dialog:
+    with kv.AD.SCUI.divactive.AlertDialog.Root(key="alert_dialog_1") as alert_dialog_box:
         # Trigger Button
         with kv.AD.SCUI.divactive.AlertDialog.Trigger(variant="outline"):
             with kv.PD.Prose(text="Show Dialog"):
@@ -41,7 +41,7 @@ with MuCtx:
 
 
 wp_endpoint = kv.create_endpoint(key="webpage_mutable_csr",
-                                 childs =[alert_dialog],
+                                 childs =[alert_dialog_box],
                                  #body_classes = "bg-slate-100 dark:bg-slate-900",
                                  #html_classes = "font-sans text-gray-800",
                                  skeleton_data_theme = "mint",

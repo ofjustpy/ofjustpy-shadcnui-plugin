@@ -11,6 +11,18 @@ linear_selector = LinearSelector(key="linear_selector", num_iter=range(0,8), on_
 
 kv.set_style("un")
 
+# with MuCtx:
+#     with SCUI.Alert.Root() as alert_box:
+#         with SCUI.Alert.Title():
+#             with kv.PD.Prose(text="Heads up!"):
+#                 pass
+#             pass
+
+#         with SCUI.Alert.Description():
+#             with kv.PD.Prose(text="You can add components to your app using the cli."):
+#                 pass
+
+            
 alert = kv.AD.SCUI.divactive.Alert(key="alert_1")
 alert.Title(childs = [kv.PC.Span(text="Heads up!")])
 alert.Description(childs = [kv.PC.Span(text="You can add components to your app using the cli.")

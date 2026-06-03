@@ -6,6 +6,7 @@ from kavya.themes import ui_styles
 def gen_ActiveDiv_type_by_tag(tag,
                         prefix="",
                         attrs=None,
+                        addon_mixins = None
                         ):
     """
     TODO: bind_value: implies that component is tied to a value e.g.
@@ -15,6 +16,7 @@ def gen_ActiveDiv_type_by_tag(tag,
     class Mixin:
         kv_label_to_shadcn_comp_map = ""
         scui_comp_label = ""
+        html_tag = f"{prefix}{tag}".lower()
         def __init__(self, attrs=attrs, **kwargs):
             self.domDict.vue_type = "shadcnui_component"
             self.domDict.html_tag = f"{prefix}{tag}".lower()
@@ -33,6 +35,7 @@ def gen_ActiveDiv_type_by_tag(tag,
 
     class_def = assign_id(ActiveDiv_StubWrappedTypeGen(f"{prefix}{tag}",
                                                        Mixin,
+                                                       addon_mixins = addon_mixins,
                                                        stytags_getter_func=lambda m=ui_styles: getattr(m.sty,
                                                                                                        f"scui_{prefix.lower()}{tag.lower()}"
                                                                                                        )
@@ -45,6 +48,7 @@ def gen_ActiveDiv_type_by_tag(tag,
 def gen_PassiveDiv_type_by_tag(tag,
                         prefix="",
                         attrs=None,
+                        addon_mixins = None
                         ):
     """
     TODO: bind_value: implies that component is tied to a value e.g.
@@ -54,6 +58,7 @@ def gen_PassiveDiv_type_by_tag(tag,
     class Mixin:
         kv_label_to_shadcn_comp_map = ""
         scui_comp_label = ""
+        html_tag = f"{prefix}{tag}".lower()
         def __init__(self, attrs=attrs, **kwargs):
             self.domDict.vue_type = "shadcnui_component"
             self.domDict.html_tag = f"{prefix}{tag}".lower()
@@ -70,8 +75,24 @@ def gen_PassiveDiv_type_by_tag(tag,
                 pass
             pass
 
+    # in order to reuse
+    # html mixins like ImgMixin
+    # that set the html_tag to img
+    # we need to reset that 
+
+    if addon_mixins == None:
+        addon_mixins = []
+        
+    class SetHTMLTag:
+        html_tag = f"{prefix}{tag}".lower()
+        def __init__(self, *args, **kwargs):
+            self.domDict.html_tag = f"{prefix}{tag}".lower()
+            pass
+
+        
     class_def = PassiveDiv_StubWrappedTypeGen(f"{prefix}{tag}",
                                               Mixin,
+                                              addon_mixins = [*addon_mixins, SetHTMLTag],
                                               stytags_getter_func=lambda m=ui_styles: getattr(m.sty,
                                                                                                        f"scui_{prefix.lower()}{tag.lower()}"
                                                                                                        )
@@ -90,7 +111,6 @@ def CSR_comp_generator(scui_stub_wrapper):
             pass
 
         def post_id_assign_callback(self):
-            print("id of the object = ", self.id)
             self.prepare_htmlRender()
             pass
 

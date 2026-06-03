@@ -1,85 +1,54 @@
-from py_tailwind_utils import *
-from macropy.core.macros import Macros
-import ast
+from kavya.themes import ui_styles
+from kavya.type_factory.static_type_factory import (
+    ActiveDiv_StubWrappedTypeGen,
+    PassiveDiv_StubWrappedTypeGen,
+)
+from .shadcn_type_factory import (
+    CSR_comp_generator,
+    gen_ActiveDiv_type_by_tag,
+    gen_PassiveDiv_type_by_tag,
+)
+from kavya.htmlcomponents import html_tag_mixins as HTM
 
-macros = Macros()
+scui_comp_label = "breadcrumb"
 
-def translater(comp_type,
-               comp_label,
-               kwargs_nodes,
-               target_ast_node=None, 
-               child_comp_call_trees=[]
-               ):
-    num_childs = len(child_comp_call_trees)
 
-    childs_keyword = ast.keyword(arg='childs',
-                                 value=ast.List(elts=child_comp_call_trees, ctx=ast.Load())
+class BreadcrumbMixin:
 
-                                 )
+    def __init__(self, *args, **kwargs):
+        self.domDict.vue_type = "shadcnui_component"
+        self.domDict.html_tag = "breadcrumb_root"
 
-    call_ast = ast.Call(div_func,
-                        args=[],
-                        keywords=[ *kwargs_nodes, childs_keyword]
-                        )
 
-    if target_ast_node:
-        assign_statement = ast.Assign(targets=[target_ast_node], value=call_ast)
-        return assign_statement, ast.Name(id=target_ast_node.id, ctx=ast.Load())
-    else:
-        return None, call_ast
+# Base generation pipeline wrapper
+_Breadcrumb = ActiveDiv_StubWrappedTypeGen(
+    "Breadcrumb",
+    BreadcrumbMixin,
+    stytags_getter_func=lambda m=ui_styles: m.sty.scui_breadcrumb,
+)
 
-    
-def deal_with_inner_with_block(block_tree):
-    assert isinstance(block_tree, ast.With)
-    child_with_blocks = [node for node in block_tree.body if isinstance(node, ast.With)]
-    child_comp_call_trees = child_comp_call_trees
-    assign_stmts = []
-    for child_with_block in child_with_blocks:
-        X = deal_with_inner_with_block(child_with_block)
-        assert False
+# Module-level component definitions
+Root = CSR_comp_generator(_Breadcrumb)
 
-    withitem = block_tree.items[0]
-    target_ast_node = None
-    if withitem.optional_vars:
-        target_ast_node = withitem.optional_vars
-        assert False
-        pass
+List = gen_PassiveDiv_type_by_tag("List", prefix="Breadcrumb_")
+Item = gen_PassiveDiv_type_by_tag("Item", prefix="Breadcrumb_")
 
-    context_expr = withitem.context_expr
-    if isinstance(context_expr, ast.Call):
-        func_node = context_expr.func
+Link = gen_PassiveDiv_type_by_tag(
+    "Link", 
+    prefix="Breadcrumb_", 
+    addon_mixins=[HTM.AMixin], 
+)
 
-        assign_stmt, ref = translater(comp_type,
-                              func_node.id,
-                              context_expr.keywords,
-                              target_ast_node=target_ast_node,
-                              child_comp_call_trees = child_comp_call_trees
-                              )
-        if assign_stmt:
-            assign_stmts.append(assign_stmt)
-        return (assign_stmts, ref)
-    elif isinstance(context_expr, ast.Name):
-        comp_id = context_expr.id
-        comp_type = 'Passive'
-        assign_stmt, ref = translater(comp_type, comp_id, [], child_comp_call_trees = child_comp_call_trees)
-        if assign_stmt:
-            assign_stmts.append(assign_stmt)
-        return assign_stmts, ref
-    else:
-        assert False
-        
-    assert False
-@macros.block
-def writer_ctx(tree, *args, **kw):
-    """
-    a macro that patches the ast-tree
-    : in our use-case -- tree is a list of With nodes
-    """
-    with_blocks = [node for node in tree if isinstance(node, ast.With)]
-    assign_stmts, ref = deal_with_inner_with_block(with_blocks[0])
-    assert assign_stmts
+Separator = gen_PassiveDiv_type_by_tag("Separator", prefix="Breadcrumb_")
+Page = gen_PassiveDiv_type_by_tag("Page", prefix="Breadcrumb_")
 
-    assert ref
 
-    return [*assign_stmts]
-
+# 3. Module-level registry mapping using the Breadcrumb namespace container
+kv_label_to_shadcn_comp_map = """
+    'breadcrumb_root': Breadcrumb.Root,
+    'breadcrumb_list': Breadcrumb.List,
+    'breadcrumb_item': Breadcrumb.Item,
+    'breadcrumb_link': Breadcrumb.Link,
+    'breadcrumb_separator': Breadcrumb.Separator,
+    'breadcrumb_page': Breadcrumb.Page,
+"""

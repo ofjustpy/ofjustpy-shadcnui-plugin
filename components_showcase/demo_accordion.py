@@ -1,11 +1,12 @@
 
 import kavya as kv
-from kavya.dsl import macros, MuCtx
 from py_tailwind_utils import *
+from shadcnui_components.dsl import macros, MuCtx
+#import shadcnui_components as SCUI
 import shadcnui_components as SCUI
 
 with MuCtx:
-    with SCUI.Accordion.Root(type="single", extra_classes="w-full sm:max-w-[70%]", value="item-1") as accordion_box: 
+    with kv.AD.SCUI.divactive.Accordion(type="single", extra_classes="w-full sm:max-w-[70%]", value="item-1") as accordion_box: 
         with SCUI.Accordion.Item(value="item-1"):
             with SCUI.Accordion.Trigger():
                 with kv.PD.Prose(text="Product Information"):
