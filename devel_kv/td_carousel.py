@@ -18,7 +18,7 @@ with MuCtx:
                 # Slide Item 1
                 with SCUI.divactive.Carousel.Item():
                     with kv.PD.Div(classes="p-1"):
-                        with SCUI.divactive.Card.Root():
+                        with SCUI.divactive.Card.Root(key="card_1"):
                             with SCUI.divactive.Card.Content(classes="flex aspect-square items-center justify-center p-6"):
                                 with kv.PD.Span(classes="text-4xl font-semibold"):
                                     with kv.PD.Prose(text="1"):
@@ -27,7 +27,7 @@ with MuCtx:
                 # Slide Item 2
                 with SCUI.divactive.Carousel.Item():
                     with kv.PD.Div(classes="p-1"):
-                        with SCUI.divactive.Card.Root():
+                        with SCUI.divactive.Card.Root(key="card_2"):
                             with SCUI.divactive.Card.Content(classes="flex aspect-square items-center justify-center p-6"):
                                 with kv.PD.Span(classes="text-4xl font-semibold"):
                                     with kv.PD.Prose(text="2"):
@@ -36,7 +36,7 @@ with MuCtx:
                 # Slide Item 3
                 with SCUI.divactive.Carousel.Item():
                     with kv.PD.Div(classes="p-1"):
-                        with SCUI.divactive.Card.Root():
+                        with SCUI.divactive.Card.Root(key="card_3"):
                             with SCUI.divactive.Card.Content(classes="flex aspect-square items-center justify-center p-6"):
                                 with kv.PD.Span(classes="text-4xl font-semibold"):
                                     with kv.PD.Prose(text="3"):

@@ -43,5 +43,7 @@ kv_label_to_shadcn_comp_map = """
     'carousel_content': Carousel.Content,
     'carousel_item': Carousel.Item,
     'carousel_previous': Carousel.Previous,
-    'carousel_next': Carousel.Next,
+    'carousel_next': Carousel.Next
 """
+
+import_stmt = """ import * as Carousel from "$lib/components/ui/carousel/index.js";"""
