@@ -23,7 +23,7 @@ from . import button as Button
 from . import badge as Badge
 from . import checkbox as Checkbox
 from . import label as Label
-
+from . import collapsible as Collapsible
 
 #TBD: TODO: 
 # class BadgeMixin:
