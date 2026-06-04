@@ -22,7 +22,7 @@ with MuCtx:
                         pass
                 
                 with SCUI.divactive.Card.Action():
-                    with SCUI.divactive.Button(variant="link"):
+                    with SCUI.divactive.Button.Root(variant="link", key="outline_btn1"):
                         with kv.PD.Prose(text="Sign Up"):
                             pass
 
@@ -34,16 +34,16 @@ with MuCtx:
                         
                         # Email Input Field Group
                         with kv.PD.Div(classes="grid gap-2"):
-                            with SCUI.divactive.Label(for_id="email"): # using for_id to prevent python keyword collision
+                            with kv.PC.Label(for_id="email"): # using for_id to prevent python keyword collision
                                 with kv.PD.Prose(text="Email"):
                                     pass
-                            with SCUI.divactive.Input(id="email", type="email", placeholder="m@example.com", required=True):
+                            with kv.AD.Input(id="email", type="email", placeholder="m@example.com", required=True, key="email"):
                                 pass
 
                         # Password Input Field Group
                         with kv.PD.Div(classes="grid gap-2"):
                             with kv.PD.Div(classes="flex items-center"):
-                                with SCUI.divactive.Label(for_id="password"):
+                                with kv.PC.Label(for_id="password"):
                                     with kv.PD.Prose(text="Password"):
                                         pass
                                 with kv.PD.A(
@@ -52,15 +52,15 @@ with MuCtx:
                                 ):
                                     with kv.PD.Prose(text="Forgot your password?"):
                                         pass
-                            with SCUI.divactive.Input(id="password", type="password", required=True):
+                            with kv.AD.Input(id="password", type="password", required=True, key="password"):
                                 pass
 
             # Card Footer
             with SCUI.divactive.Card.Footer(classes="flex-col gap-2"):
-                with SCUI.divactive.Button(type="submit", classes="w-full"):
+                with SCUI.divactive.Button.Root(type="submit", classes="w-full", key="submit_btn"):
                     with kv.PD.Prose(text="Login"):
                         pass
-                with SCUI.divactive.Button(variant="outline", classes="w-full"):
+                with SCUI.divactive.Button.Root(variant="outline", classes="w-full", key="outline_btn1"):
                     with kv.PD.Prose(text="Login with Google"):
                         pass
 

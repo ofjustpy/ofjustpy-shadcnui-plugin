@@ -5,9 +5,9 @@ app = kv.load_app()
 #import td_alertdialog
 #import td_avatar
 #import td_breadcrumb
-import td_buttongroup
+#import td_buttongroup
 #import td_carousel
-#import td_card
+import td_card
 #import td_button
 #import td_badge
 

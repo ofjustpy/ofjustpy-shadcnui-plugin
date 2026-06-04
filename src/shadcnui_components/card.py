@@ -47,5 +47,7 @@ kv_label_to_shadcn_comp_map = """
     'card_description': Card.Description,
     'card_content': Card.Content,
     'card_footer': Card.Footer,
-    'card_action': Card.Action,
+    'card_action': Card.Action
+"""
+import_stmt = """import * as Card from "$lib/components/ui/card/index.js";
 """
