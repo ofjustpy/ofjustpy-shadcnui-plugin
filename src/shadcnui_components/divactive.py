@@ -16,6 +16,7 @@ from kavya.themes import ui_styles
 from .  import alert_dialog as   AlertDialog
 from .  import avatar as   Avatar
 from . import breadcrumb as Breadcrumb
+from . import buttongroup as ButtonGroup
 from .  import carousel as Carousel
 from .  import card as Card
 from . import button as Button

@@ -41,5 +41,4 @@ Root = CSR_comp_generator(_Button)
 import_stmt = """import { Button } from "$lib/components/ui/button/index.js";
 """
         
-kv_label_to_shadcn_comp_map = """'button':Button
-"""
+kv_label_to_shadcn_comp_map = """'button':Button"""
