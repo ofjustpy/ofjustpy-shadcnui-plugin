@@ -10,7 +10,9 @@ app = kv.load_app()
 #import td_card
 #import td_carousel
 #import td_checkbox
-import td_collapsible
+#import td_collapsible
+#import td_command
+import td_contextmenu
 #import td_button
 #import td_badge
 
