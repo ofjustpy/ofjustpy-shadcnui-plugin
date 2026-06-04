@@ -50,3 +50,5 @@ kv_label_to_shadcn_comp_map = """
     'avatar_image': Avatar.Image,
     'avatar_fallback': Avatar.Fallback,
 """
+import_stmt = """import * as Avatar from "$lib/components/ui/alert-dialog/index.js";
+"""

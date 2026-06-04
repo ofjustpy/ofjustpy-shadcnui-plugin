@@ -21,29 +21,30 @@ with MuCtx:
                     pass
 
                 # 2. Dropdown / Ellipsis Menu Item
-                with SCUI.divactive.Breadcrumb.Item():
-                    with SCUI.divactive.DropdownMenu.Root(key="breadcrumb_dropdown"):
+                # with SCUI.divactive.Breadcrumb.Item():
+                    # with SCUI.divactive.DropdownMenu.Root(key="breadcrumb_dropdown"):
                         
-                        # Trigger containing Ellipsis icon and screen-reader text
-                        with SCUI.divactive.DropdownMenu.Trigger(classes="flex items-center gap-1"):
-                            # Representing the size-4 Ellipsis icon via a custom component tag or a generic layout
-                            with SCUI.divactive.Breadcrumb.Ellipsis(classes="size-4"):
-                                pass
-                            with kv.PD.Span(classes="sr-only"):
-                                with kv.PD.Prose(text="Toggle menu"):
-                                    pass
+                    #     # Trigger containing Ellipsis icon and screen-reader text
+                    #     with SCUI.divactive.DropdownMenu.Trigger(classes="flex items-center gap-1"):
+                    #         # Representing the size-4 Ellipsis icon via a custom component tag or a generic layout
+                    #         with SCUI.divactive.Breadcrumb.Ellipsis(classes="size-4"):
+                    #             pass
+                    #         with kv.PD.Span(classes="sr-only"):
+                    #             with kv.PD.Prose(text="Toggle menu"):
+                    #                 pass
+                    
                         
-                        # Dropdown Sub-menu items
-                        with SCUI.divactive.DropdownMenu.Content(align="start"):
-                            with SCUI.divactive.DropdownMenu.Item():
-                                with kv.PD.Prose(text="Documentation"):
-                                    pass
-                            with SCUI.divactive.DropdownMenu.Item():
-                                with kv.PD.Prose(text="Themes"):
-                                    pass
-                            with SCUI.divactive.DropdownMenu.Item():
-                                with kv.PD.Prose(text="GitHub"):
-                                    pass
+                        # # Dropdown Sub-menu items
+                        # with SCUI.divactive.DropdownMenu.Content(align="start"):
+                        #     with SCUI.divactive.DropdownMenu.Item():
+                        #         with kv.PD.Prose(text="Documentation"):
+                        #             pass
+                        #     with SCUI.divactive.DropdownMenu.Item():
+                        #         with kv.PD.Prose(text="Themes"):
+                        #             pass
+                        #     with SCUI.divactive.DropdownMenu.Item():
+                        #         with kv.PD.Prose(text="GitHub"):
+                        #             pass
 
                 with SCUI.divactive.Breadcrumb.Separator():
                     pass

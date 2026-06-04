@@ -52,3 +52,6 @@ kv_label_to_shadcn_comp_map = """
     'breadcrumb_separator': Breadcrumb.Separator,
     'breadcrumb_page': Breadcrumb.Page,
 """
+
+import_stmt = """import * as Breadcrumb from "$lib/components/ui/breadcrumb/index.js";
+"""

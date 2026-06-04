@@ -47,3 +47,5 @@ Action = gen_PassiveDiv_type_by_tag("Action", prefix="AlertDialog_")
 
     
 
+import_stmt = """import * as AlertDialog from "$lib/components/ui/alert-dialog/index.js";
+"""
