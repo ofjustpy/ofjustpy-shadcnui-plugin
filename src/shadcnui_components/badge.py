@@ -7,7 +7,7 @@ from .shadcn_type_factory import (
 )
 from kavya.session_managment.uictx_id_assigner import assign_id, id_assigner
 from kavya.themes import ui_styles
-
+vue_type = "shadcnui_component"
 scui_comp_label = "badge"
 
 

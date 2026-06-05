@@ -11,11 +11,11 @@ from .shadcn_type_factory import (
 
 scui_comp_label = "card"
 
-
+vue_type = "shadcnui_component"
 class CardMixin:
 
     def __init__(self, *args, **kwargs):
-        self.domDict.vue_type = "shadcnui_component"
+        self.domDict.vue_type = vue_type
         self.domDict.html_tag = "card_root"
 
 

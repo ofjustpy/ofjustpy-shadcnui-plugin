@@ -8,7 +8,7 @@ from .shadcn_type_factory import (
     gen_ActiveDiv_type_by_tag,
     gen_PassiveDiv_type_by_tag,
 )
-
+vue_type = "shadcnui_component"
 scui_comp_label = "carousel"
 
 

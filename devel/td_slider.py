@@ -7,7 +7,7 @@ from py_tailwind_utils import *
 oj.set_style("un")
 
 with writer_ctx:
-    with SCUI.Slider(extra_classes="w-[400px]", value="[50]", max_=100, step=1) as slider_box:
+    with SCUI.Slider(extra_classes="w-[400px]", value=[50], max_=100, step=1) as slider_box:
         pass
         
 

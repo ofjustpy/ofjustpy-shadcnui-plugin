@@ -6,7 +6,7 @@ from .shadcn_type_factory import (
     CSR_comp_generator,
 )
 from kavya.themes import ui_styles
-
+vue_type = "shadcnui_component"
 scui_comp_label = "command"
 
 

@@ -4,7 +4,7 @@ from .shadcn_type_factory import (gen_ActiveDiv_type_by_tag, gen_PassiveDiv_type
 
 from kavya.type_factory.static_type_factory import ActiveDiv_StubWrappedTypeGen, PassiveDiv_StubWrappedTypeGen
 from kavya.themes import ui_styles
-
+vue_type = "shadcnui_component"
 kv_label_to_shadcn_comp_map = """
     'alertdialog_root': AlertDialog.Root,
     'alertdialog_trigger': AlertDialog.Trigger,

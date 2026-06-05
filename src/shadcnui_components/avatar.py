@@ -10,7 +10,7 @@ from .shadcn_type_factory import (
 )
 from kavya.htmlcomponents import html_tag_mixins as HTM
 from kavya.type_factory.common_mixins import HCTextMixin
-
+vue_type = "shadcnui_component"
 scui_comp_label = "avatar"
 
 

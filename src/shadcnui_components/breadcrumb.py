@@ -9,7 +9,7 @@ from .shadcn_type_factory import (
     gen_PassiveDiv_type_by_tag,
 )
 from kavya.htmlcomponents import html_tag_mixins as HTM
-
+vue_type = "shadcnui_component"
 scui_comp_label = "breadcrumb"
 
 
