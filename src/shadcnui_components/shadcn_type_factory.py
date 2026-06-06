@@ -3,6 +3,12 @@ from kavya.type_factory.static_type_factory import ActiveDiv_StubWrappedTypeGen,
 from kavya.htmlcomponents import html_tag_mixins as HTM
 from kavya.themes import ui_styles
 
+
+class BindValueMixin:
+    def __init__(self, *args, **kwargs):
+        if "bindvalue" in kwargs:
+            self.bindvalue = kwargs.get("bindvalue")
+
 def gen_ActiveDiv_type_by_tag(tag,
                         prefix="",
                         attrs=None,

@@ -28,6 +28,7 @@ from . import command as Command
 from . import contextmenu as ContextMenu
 
 from . import slider as Slider
+from . import calendar as Calendar
 #TBD: TODO: 
 # class BadgeMixin:
 #     def __init__(self, **kwargs):

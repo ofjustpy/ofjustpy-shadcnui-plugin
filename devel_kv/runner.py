@@ -15,7 +15,8 @@ app = kv.load_app()
 #import td_contextmenu
 #import td_button
 #import td_badge
-import td_slider
+#import td_slider
+import td_calendar
 #import td_label
 #import td_alertdialog_debug
 # from starlette.testclient import TestClient

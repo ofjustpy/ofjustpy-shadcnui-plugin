@@ -11,7 +11,8 @@ def valuechange_eh(dbref, msg, to_ms):
 
 # Python equivalent for the HTML snippet
 with writer_ctx:
-    with SCUI.Calendar(key="cal1", on_valuechange=valuechange_eh) as calendar_box:
+    with SCUI.Calendar.Root(key="cal1", bindvalue="need proper JSExpr",
+                       on_valuechange=valuechange_eh) as calendar_box:
         pass
 
 app = oj.load_app()
