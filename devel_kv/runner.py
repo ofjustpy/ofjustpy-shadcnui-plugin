@@ -2,6 +2,8 @@ import macropy.activate
 import kavya as kv
 kv.set_style("un")
 app = kv.load_app()
+import td_dsl_childcomp
+#import td_alertdialog_debug
 #import td_alertdialog
 #import td_avatar
 #import td_breadcrumb
@@ -16,7 +18,8 @@ app = kv.load_app()
 #import td_button
 #import td_badge
 #import td_slider
-import td_calendar
+#import td_calendar
+#import td_popover
 #import td_label
 #import td_alertdialog_debug
 # from starlette.testclient import TestClient

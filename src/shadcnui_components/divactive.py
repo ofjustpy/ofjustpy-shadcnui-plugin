@@ -27,8 +27,11 @@ from . import collapsible as Collapsible
 from . import command as Command
 from . import contextmenu as ContextMenu
 
+from . import chart as Chart
+
 from . import slider as Slider
 from . import calendar as Calendar
+from . import popover as Popover
 #TBD: TODO: 
 # class BadgeMixin:
 #     def __init__(self, **kwargs):

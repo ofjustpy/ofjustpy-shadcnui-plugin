@@ -66,14 +66,13 @@ with writer_ctx:
             with SCUI.Chart.Container(config=chart_config, extra_classes="h-[200px]",
                                       classes="w-full"):
                 # Create the AreaChart component with data and configuration
-                with LCUI.AreaChart(
-                        data=JSGlobalVar("chart_data"),
-                    x="date",
-                        #xScale="scaleUtc",  # Specify the scale type for dates
-                    #series=series,
-                    axis="x",
-                    #props=chart_props,
-                ) as area_chart:
+                with LCUI.divactive.AreaChart(data=JSGlobalVar("chart_data"),
+                                              x="date",
+                                              #xScale="scaleUtc",  # Specify the scale type for dates
+                                              #series=series,
+                                              axis="x",
+                                              #props=chart_props,
+                                              ) as area_chart:
                     # Define the tooltip within the chart's context
                     # with SCUI.Chart.Tooltip(
                     #     labelFormatter="lambda v: new Date(v).toLocaleDateString('en-US', { month: 'long' })",

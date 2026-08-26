@@ -4,15 +4,25 @@ from shadcnui_components.dsl import macros, MuCtx
 import shadcnui_components as SCUI
 from py_tailwind_utils import *
 
+import kavya as kv
+from shadcnui_components.dsl import macros, MuCtx
+import shadcnui_components as SCUI
+from py_tailwind_utils import *
 
+with MuCtx:
+    # Main column wrapper
+    with kv.PD.Div(classes="flex items-start gap-3") as debug_box:
+        with SCUI.divactive.Badge.Root(key="badge_default"):
+            with kv.PD.Span(text="Badge"):
+                pass
+                
+
+                    
 
 kv.set_style("un")
-alert_dialog =  kv.AD.SCUI.divactive.AlertDialog.Root(key="alert_dialog_1")
-trigger = kv.AD.SCUI.divactive.AlertDialog.Trigger(variant="outline")
-#kv.AD.SCUI.divactive.AlertDialog(key="alert_dialog_1")
 
 wp_endpoint = kv.create_endpoint(key="webpage_mutable_csr",
-                                 childs =[alert_dialog],
+                                 childs =[debug_box],
                                  #body_classes = "bg-slate-100 dark:bg-slate-900",
                                  #html_classes = "font-sans text-gray-800",
                                  skeleton_data_theme = "mint",

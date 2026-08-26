@@ -19,6 +19,15 @@ def translater(comp_type,
                      or
                     Attribute(value=Attribute(value=Name(id='oj'), attr='PD'), attr='Prose')
     """
+    print("inside translater : ", comp_type)    
+    child_kwarg = None
+    if comp_type == "ChildComp":
+
+        # child should be the only argument
+        for child_kwarg in kwargs_nodes:
+            break
+        # there is no assign stmt, only the 
+        return [], child_kwarg.value
     num_childs = len(child_comp_call_trees)
 
     childs_keyword = ast.keyword(arg='childs',
@@ -50,6 +59,7 @@ def deal_with_inner_with_block(block_tree):
     child_comp_call_trees = []
     assign_stmts = []
     for child_with_block in child_with_blocks:
+        print("calling child-deal-with-inner-block")
         child_assign_stmts, ref = deal_with_inner_with_block(child_with_block)
         assign_stmts.extend(child_assign_stmts)
         assert ref != None
@@ -67,11 +77,21 @@ def deal_with_inner_with_block(block_tree):
     context_expr = withitem.context_expr
     # TODO: about comp_type
     comp_type = None
-
+    
     if isinstance(context_expr, ast.Call):
         # assume func_node is an attribute
         # Attribute(value=Attribute(value=Name(id='oj'), attr='PD'), attr='Prose')
+
         func_node = context_expr.func
+        print("now calling translator: ast.Call : ", func_node)
+
+        # for shadcnui : with ChildComp
+        if isinstance(func_node, ast.Name):
+            print("now calling translator: ast.Call: with Name : ", func_node)
+            comp_type = "ChildComp"
+            pass
+        else:
+            pass
         assign_stmt, ref = translater(comp_type,
                                       func_node,
                                       context_expr.keywords,
