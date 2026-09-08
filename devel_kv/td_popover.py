@@ -6,7 +6,7 @@ from py_tailwind_utils import *
 
 with MuCtx:
     # Main outer box layout
-    with kv.PD.Div(classes="p-8 flex justify-center") as popover_box:
+    with kv.MD.Div(classes="p-8 flex justify-center") as popover_box:
 
         # Card Root Definition
         with kv.AD.SCUI.divactive.Popover.Root(classes="-my-4 w-full max-w-sm", key="login_card"):

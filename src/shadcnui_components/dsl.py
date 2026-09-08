@@ -19,7 +19,7 @@ def translater(comp_type,
                      or
                     Attribute(value=Attribute(value=Name(id='oj'), attr='PD'), attr='Prose')
     """
-    print("inside translater : ", comp_type)    
+
     child_kwarg = None
     if comp_type == "ChildComp":
 
@@ -59,7 +59,7 @@ def deal_with_inner_with_block(block_tree):
     child_comp_call_trees = []
     assign_stmts = []
     for child_with_block in child_with_blocks:
-        print("calling child-deal-with-inner-block")
+
         child_assign_stmts, ref = deal_with_inner_with_block(child_with_block)
         assign_stmts.extend(child_assign_stmts)
         assert ref != None
@@ -83,11 +83,9 @@ def deal_with_inner_with_block(block_tree):
         # Attribute(value=Attribute(value=Name(id='oj'), attr='PD'), attr='Prose')
 
         func_node = context_expr.func
-        print("now calling translator: ast.Call : ", func_node)
 
         # for shadcnui : with ChildComp
         if isinstance(func_node, ast.Name):
-            print("now calling translator: ast.Call: with Name : ", func_node)
             comp_type = "ChildComp"
             pass
         else:

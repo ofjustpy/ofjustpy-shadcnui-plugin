@@ -32,6 +32,7 @@ from . import chart as Chart
 from . import slider as Slider
 from . import calendar as Calendar
 from . import popover as Popover
+from . import hovercard as HoverCard
 #TBD: TODO: 
 # class BadgeMixin:
 #     def __init__(self, **kwargs):

@@ -7,6 +7,7 @@ kv.register_SCUI_component_library(sys.modules[__name__]
 
 #from .dsl import MuCtx
 from . import divactive
+from . import divmutable
 #from .divactive import Alert
 
 # from .components import (Alert, AlertDialog,
